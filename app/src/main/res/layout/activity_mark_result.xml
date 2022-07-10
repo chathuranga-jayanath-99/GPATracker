@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rlMarkResultBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvModuleName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Module Name"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvModuleCredits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvModuleName"
+            android:hint="Module Credits"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/etModuleResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvModuleCredits"
+            android:hint="Module Result"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnMarkResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mark result"
+            android:textSize="20sp"
+            android:layout_below="@id/etModuleResult"/>
+
+    </RelativeLayout>
+</RelativeLayout>

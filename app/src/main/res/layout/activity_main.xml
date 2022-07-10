@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context=".ui.MainActivity">
+
+    <EditText
+        android:id="@+id/etAccountId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Account Number (Ex:1234)"
+        android:inputType="number"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etHolderName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etAccountId"
+        android:hint="Holder's Name"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/rgMaxGpa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etHolderName"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvMaxGpa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etHolderName"
+            android:text="Max GPA: "
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rbGpaHigh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.2"/>
+
+        <RadioButton
+            android:id="@+id/rbGpaLow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.0"/>
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etNumberOfSemesters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rgMaxGpa"
+        android:hint="Number of Semesters"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnAddAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etNumberOfSemesters"
+        android:layout_centerHorizontal="true"
+        android:text="Add Account" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_below="@id/btnAddAccount"/>
+
+    <TextView
+        android:id="@+id/tvSelectAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAddAccount"
+        android:layout_marginTop="16dp"
+        android:text="Select an Account"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+    <ListView
+        android:id="@+id/lvAccountsIdList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvSelectAccount"
+        android:layout_marginBottom="60dp" />
+
+</RelativeLayout>

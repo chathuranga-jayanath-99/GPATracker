@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="60dp"
+    android:padding="10dp"
+    tools:context=".ui.SemesterSubjectActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlSemGpa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/tvSemGpa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semester GPA: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvSemGpaCalculated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvSemGpa"
+            android:text="__"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llModuleAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlSemGpa"
+        android:weightSum="100">
+
+        <EditText
+            android:id="@+id/etAddModuleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"
+            android:hint="Module Name"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/etAddModuleCredits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="14"
+            android:hint="Credits"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/btnAddModule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="6"
+            android:text="Add" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSemModules"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llModuleAdd"
+        android:layout_marginTop="10dp"
+        android:text="Semester Modules"
+        android:textSize="18dp" />
+
+    <ListView
+        android:id="@+id/lvSemModulesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvSemModules"
+        android:layout_marginTop="8dp" />
+
+
+</RelativeLayout>
