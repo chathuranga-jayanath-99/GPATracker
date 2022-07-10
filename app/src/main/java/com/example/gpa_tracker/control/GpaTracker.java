@@ -71,6 +71,11 @@ public abstract class GpaTracker {
 
     }
 
+    public void markSubjectResult(String accountId, int semesterNo, int subjectId, String result) {
+//        Log.i("debug", "markSubjectResult");
+        semesterSubjectDAO.updateSemesterSubject(accountId, semesterNo, String.valueOf(subjectId), result);
+    }
+
     public List<Subject> getAccountSemesterSubjects(String accountId, int semesterNo) {
         Semester semesterWithSubjects = semesterSubjectDAO.getSemesterWithSubjects(accountId, semesterNo);
         return semesterWithSubjects.getSubjectList();

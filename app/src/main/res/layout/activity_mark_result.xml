@@ -11,36 +11,95 @@
         android:layout_centerVertical="true"
         android:padding="20dp">
 
-        <TextView
-            android:id="@+id/tvModuleName"
+        <LinearLayout
+            android:id="@+id/llModuleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Module Name"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvModuleCredits"
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="Module Name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvModuleName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:hint="CS-101"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llModuleCredits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvModuleName"
-            android:hint="Module Credits"
-            android:textSize="20sp" />
+            android:layout_below="@id/llModuleName"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="Module Credits"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvModuleCredits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llModuleName"
+                android:layout_weight="0.6"
+                android:hint="3.0"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llModuleResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llModuleCredits"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="Module Result"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvModuleCurrentCredits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="0.6"
+
+                android:textSize="20sp" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/etModuleResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvModuleCredits"
-            android:hint="Module Result"
-            android:textSize="20sp" />
+            android:layout_below="@id/llModuleResult"
+            android:hint="Enter Result"
+            android:textSize="20sp"
+            android:layout_marginTop="50sp"/>
 
         <Button
             android:id="@+id/btnMarkResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/etModuleResult"
             android:text="Mark result"
-            android:textSize="20sp"
-            android:layout_below="@id/etModuleResult"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 </RelativeLayout>

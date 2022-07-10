@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -105,7 +106,7 @@ public class PersistentSemesterSubjectDAO implements SemesterSubjectDAO {
     public boolean updateSemesterSubject(String accountId, int semesterNo, String subjectId, String result) {
         SQLiteDatabase writableDatabase = this.databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-
+        Log.i("debug", "updateSemesterSubject");
         contentValues.put(RESULT_COLUMN, result);
 
         int update = writableDatabase.update(SEMESTER_SUBJECT_TABLE, contentValues, "account_id=? and semester_no=? and subject_id=?", new String[]{accountId, String.valueOf(semesterNo), subjectId});
