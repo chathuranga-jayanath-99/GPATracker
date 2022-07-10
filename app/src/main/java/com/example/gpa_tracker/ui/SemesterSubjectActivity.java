@@ -51,12 +51,13 @@ public class SemesterSubjectActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Subject subject = (Subject) adapterView.getItemAtPosition(i);
+                Log.i("debug", subject.toString());
 
                 Intent intent = new Intent(SemesterSubjectActivity.this, MarkResultActivity.class);
-//                intent.putExtra("keySubjectId", subject.getId());
-//                intent.putExtra("keySubjectName", subject.getName());
-//                intent.putExtra("keySubjectCredits", subject.getCredits());
-//                intent.putExtra("keySubjectResult", subject.getResult());
+                intent.putExtra("keySubjectId", String.valueOf(subject.getId()));
+                intent.putExtra("keySubjectName", subject.getName());
+                intent.putExtra("keySubjectCredits", String.valueOf(subject.getCredits()));
+                intent.putExtra("keySubjectResult", subject.getResult());
                 startActivity(intent);
             }
         });

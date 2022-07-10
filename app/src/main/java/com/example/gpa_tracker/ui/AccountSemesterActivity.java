@@ -53,7 +53,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Semester semester = (Semester) adapterView.getItemAtPosition(i);
-
+//                Log.i("debug", semester.toString());
                 Intent intent = new Intent(AccountSemesterActivity.this, SemesterSubjectActivity.class);
                 intent.putExtra("keyAccountId", accountId);
                 intent.putExtra("keySemesterNo", String.valueOf(semester.getSemesterNo()));
