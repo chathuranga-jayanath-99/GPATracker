@@ -33,6 +33,14 @@ public abstract class GpaTracker {
         return account.getOverallGpa();
     }
 
+    public float getSemesterGpaOfAccount(String accountId, int semesterNo) {
+        Account account = accountDAO.getAccount(accountId);
+
+        Semester semester = semesterSubjectDAO.getSemesterWithSubjects(accountId, semesterNo);
+
+        return account.getSemesterGpa(semester);
+    }
+
     public List<String> getAccountIdsList() {
         return accountDAO.getAccountIdsList();
     }
@@ -72,7 +80,6 @@ public abstract class GpaTracker {
     }
 
     public void markSubjectResult(String accountId, int semesterNo, int subjectId, String result) {
-//        Log.i("debug", "markSubjectResult");
         semesterSubjectDAO.updateSemesterSubject(accountId, semesterNo, String.valueOf(subjectId), result);
     }
 

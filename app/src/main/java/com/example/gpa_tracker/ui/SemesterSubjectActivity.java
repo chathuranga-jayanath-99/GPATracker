@@ -43,7 +43,11 @@ public class SemesterSubjectActivity extends AppCompatActivity {
         this.gpaTracker = new PersistentGpaTracker(this);
 
         // fill layout
-        if (semesterNo!=-1) this.tvSemGpa.setText("Semester "+semesterNo+ " GPA:");
+        if (semesterNo!=-1) {
+            float semesterGpaOfAccount = this.gpaTracker.getSemesterGpaOfAccount(accountId, semesterNo);
+            this.tvSemGpa.setText("Semester "+semesterNo+ " GPA: ");
+            this.tvSemGpaCalculated.setText(String.valueOf(semesterGpaOfAccount));
+        }
         // view modules of semester
         showSemesterModules(accountId, semesterNo);
 

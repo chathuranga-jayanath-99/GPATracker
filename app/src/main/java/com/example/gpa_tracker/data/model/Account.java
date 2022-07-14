@@ -38,10 +38,32 @@ public class Account {
         }
 
         if (maxMarks!=0.0f) {
-            return earnedMarks / maxMarks;
+            return earnedMarks / maxMarks * this.maxGpa;
         }
         return 0.0f;
 
+    }
+
+    public float getSemesterGpa(Semester semester) {
+        float earnedMarks = 0.0f;
+        float maxMarks = 0.0f;
+
+        for (Subject subject : semester.getSubjectList()) {
+            float subjectCredits = subject.getCredits();
+            String earnResult = subject.getResult();
+
+            float earnPoints = getEarnedPointsFromResult(earnResult);
+
+            earnedMarks +=  earnPoints * subjectCredits;
+            maxMarks += this.maxGpa * subjectCredits;
+
+
+        }
+
+        if (maxMarks!=0.0f) {
+            return earnedMarks / maxMarks * this.maxGpa;
+        }
+        return 0.0f;
     }
 
     private float getEarnedPointsFromResult(String result) {
