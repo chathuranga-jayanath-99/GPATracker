@@ -1,15 +1,14 @@
 package com.example.gpa_tracker.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gpa_tracker.R;
 import com.example.gpa_tracker.control.GpaTracker;
@@ -20,9 +19,10 @@ public class MarkResultActivity extends AppCompatActivity {
 
     private TextView tvModuleName;
     private TextView tvModuleCredits;
-    private EditText etModuleResult;
+    private RadioGroup rgResults;
     private TextView tvModuleCurrentCredits;
     private Button btnMarkResult;
+    private String selectedResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +45,55 @@ public class MarkResultActivity extends AppCompatActivity {
         tvModuleCredits.setText(String.valueOf(subjectCredits));
         tvModuleCurrentCredits.setText(subjectResult);
 
+        rgResults.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rbAPlus:
+                        setSelectedResult("A+");
+                        break;
+                    case R.id.rbA:
+                        setSelectedResult("A");
+                        break;
+                    case R.id.rbAMinus:
+                        setSelectedResult("A-");
+                        break;
+
+                    case R.id.rbBPlus:
+                        setSelectedResult("B+");
+                        break;
+                    case R.id.rbB:
+                        setSelectedResult("B");
+                        break;
+                    case R.id.rbBMinus:
+                        setSelectedResult("B-");
+                        break;
+
+                    case R.id.rbCPlus:
+                        setSelectedResult("C+");
+                        break;
+                    case R.id.rbC:
+                        setSelectedResult("C");
+                        break;
+                    case R.id.rbCMinus:
+                        setSelectedResult("C-");
+                        break;
+
+                    case R.id.rbD:
+                        setSelectedResult("D");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+
+
         btnMarkResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String result = etModuleResult.getText().toString();
+                String result = getSelectedResult();
 
                 if (!result.equals("")) {
 
@@ -61,13 +106,23 @@ public class MarkResultActivity extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    private void setSelectedResult(String result) {
+        this.selectedResult = result;
+    }
+
+    private String getSelectedResult() {
+        return this.selectedResult;
     }
 
     private void initiateLayoutItems() {
         tvModuleName = findViewById(R.id.tvModuleName);
         tvModuleCredits = findViewById(R.id.tvModuleCredits);
         tvModuleCurrentCredits = findViewById(R.id.tvModuleCurrentCredits);
-        etModuleResult = findViewById(R.id.etModuleResult);
+        rgResults = findViewById(R.id.rgResults);
         btnMarkResult = findViewById(R.id.btnMarkResult);
     }
 }

@@ -7,8 +7,7 @@
         android:id="@+id/rlMarkResultBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:padding="20dp">
 
         <LinearLayout
@@ -84,22 +83,81 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/etModuleResult"
-            android:layout_width="match_parent"
+        <RadioGroup
+            android:id="@+id/rgResults"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/llModuleResult"
-            android:hint="Enter Result"
-            android:textSize="20sp"
-            android:layout_marginTop="50sp"/>
+            android:layout_below="@+id/llModuleResult"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rbAPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A+" />
+
+            <RadioButton
+                android:id="@+id/rbA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A" />
+
+            <RadioButton
+                android:id="@+id/rbAMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A-" />
+
+            <RadioButton
+                android:id="@+id/rbBPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B+" />
+
+            <RadioButton
+                android:id="@+id/rbB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B" />
+
+            <RadioButton
+                android:id="@+id/rbBMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B-" />
+
+            <RadioButton
+                android:id="@+id/rbCPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C+" />
+
+            <RadioButton
+                android:id="@+id/rbC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C" />
+
+            <RadioButton
+                android:id="@+id/rbCMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C-" />
+
+            <RadioButton
+                android:id="@+id/rbD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D" />
+        </RadioGroup>
 
         <Button
             android:id="@+id/btnMarkResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/etModuleResult"
+            android:layout_below="@id/rgResults"
             android:text="Mark result"
             android:textSize="20sp" />
-
     </RelativeLayout>
 </RelativeLayout>
