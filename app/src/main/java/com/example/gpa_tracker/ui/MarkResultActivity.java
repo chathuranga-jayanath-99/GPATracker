@@ -1,5 +1,6 @@
 package com.example.gpa_tracker.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -95,9 +96,16 @@ public class MarkResultActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String result = getSelectedResult();
 
+
                 if (!result.equals("")) {
 
                     gpaTracker.markSubjectResult(accountId, semesterNo,subjectId, result);
+
+                    Intent intent = new Intent(MarkResultActivity.this, SemesterSubjectActivity.class);
+                    intent.putExtra("keyAccountId", accountId);
+                    intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
+
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(MarkResultActivity.this, "Enter a result!", Toast.LENGTH_SHORT).show();
