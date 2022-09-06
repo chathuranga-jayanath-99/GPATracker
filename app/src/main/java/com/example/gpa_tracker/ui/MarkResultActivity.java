@@ -61,6 +61,7 @@ public class MarkResultActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String result = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(MarkResultActivity.this, result, Toast.LENGTH_SHORT).show();
+                setSelectedResult(result);
             }
 
             @Override
@@ -68,51 +69,6 @@ public class MarkResultActivity extends AppCompatActivity {
 
             }
         });
-
-//        rgResults.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                switch (checkedId) {
-//                    case R.id.rbAPlus:
-//                        setSelectedResult("A+");
-//                        break;
-//                    case R.id.rbA:
-//                        setSelectedResult("A");
-//                        break;
-//                    case R.id.rbAMinus:
-//                        setSelectedResult("A-");
-//                        break;
-//
-//                    case R.id.rbBPlus:
-//                        setSelectedResult("B+");
-//                        break;
-//                    case R.id.rbB:
-//                        setSelectedResult("B");
-//                        break;
-//                    case R.id.rbBMinus:
-//                        setSelectedResult("B-");
-//                        break;
-//
-//                    case R.id.rbCPlus:
-//                        setSelectedResult("C+");
-//                        break;
-//                    case R.id.rbC:
-//                        setSelectedResult("C");
-//                        break;
-//                    case R.id.rbCMinus:
-//                        setSelectedResult("C-");
-//                        break;
-//
-//                    case R.id.rbD:
-//                        setSelectedResult("D");
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        });
-
-
 
         btnMarkResult.setOnClickListener(new View.OnClickListener() {
             @Override
