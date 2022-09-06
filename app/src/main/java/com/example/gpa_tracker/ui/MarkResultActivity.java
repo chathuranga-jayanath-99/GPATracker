@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,9 @@ public class MarkResultActivity extends AppCompatActivity {
     private Button btnMarkResult;
     private String selectedResult;
 
+    private Spinner spinnerResults;
+    private String[] results = {"A+","A","A-","B+","B","B-","C+","C","C-","D"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,10 @@ public class MarkResultActivity extends AppCompatActivity {
 
         initiateLayoutItems();
 
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MarkResultActivity.this, android.R.layout.simple_spinner_item, results);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerResults.setAdapter(adapter);
+
         this.gpaTracker = new PersistentGpaTracker(this);
 
         // initiate view
@@ -46,48 +56,61 @@ public class MarkResultActivity extends AppCompatActivity {
         tvModuleCredits.setText(String.valueOf(subjectCredits));
         tvModuleCurrentCredits.setText(subjectResult);
 
-        rgResults.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        spinnerResults.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbAPlus:
-                        setSelectedResult("A+");
-                        break;
-                    case R.id.rbA:
-                        setSelectedResult("A");
-                        break;
-                    case R.id.rbAMinus:
-                        setSelectedResult("A-");
-                        break;
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String result = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(MarkResultActivity.this, result, Toast.LENGTH_SHORT).show();
+            }
 
-                    case R.id.rbBPlus:
-                        setSelectedResult("B+");
-                        break;
-                    case R.id.rbB:
-                        setSelectedResult("B");
-                        break;
-                    case R.id.rbBMinus:
-                        setSelectedResult("B-");
-                        break;
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                    case R.id.rbCPlus:
-                        setSelectedResult("C+");
-                        break;
-                    case R.id.rbC:
-                        setSelectedResult("C");
-                        break;
-                    case R.id.rbCMinus:
-                        setSelectedResult("C-");
-                        break;
-
-                    case R.id.rbD:
-                        setSelectedResult("D");
-                        break;
-                    default:
-                        break;
-                }
             }
         });
+
+//        rgResults.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                switch (checkedId) {
+//                    case R.id.rbAPlus:
+//                        setSelectedResult("A+");
+//                        break;
+//                    case R.id.rbA:
+//                        setSelectedResult("A");
+//                        break;
+//                    case R.id.rbAMinus:
+//                        setSelectedResult("A-");
+//                        break;
+//
+//                    case R.id.rbBPlus:
+//                        setSelectedResult("B+");
+//                        break;
+//                    case R.id.rbB:
+//                        setSelectedResult("B");
+//                        break;
+//                    case R.id.rbBMinus:
+//                        setSelectedResult("B-");
+//                        break;
+//
+//                    case R.id.rbCPlus:
+//                        setSelectedResult("C+");
+//                        break;
+//                    case R.id.rbC:
+//                        setSelectedResult("C");
+//                        break;
+//                    case R.id.rbCMinus:
+//                        setSelectedResult("C-");
+//                        break;
+//
+//                    case R.id.rbD:
+//                        setSelectedResult("D");
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
 
 
 
@@ -130,7 +153,8 @@ public class MarkResultActivity extends AppCompatActivity {
         tvModuleName = findViewById(R.id.tvModuleName);
         tvModuleCredits = findViewById(R.id.tvModuleCredits);
         tvModuleCurrentCredits = findViewById(R.id.tvModuleCurrentCredits);
-        rgResults = findViewById(R.id.rgResults);
+//        rgResults = findViewById(R.id.rgResults);
         btnMarkResult = findViewById(R.id.btnMarkResult);
+        spinnerResults = findViewById(R.id.spinnerResults);
     }
 }
