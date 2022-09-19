@@ -60,7 +60,7 @@ public abstract class GpaTracker {
         return semesterDAO.getSemestersOfAccount(accountId);
     }
 
-    public void addSubject(String name, float credits, String accountId, int semesterNo) {
+    public int addSubject(String name, float credits, String accountId, int semesterNo) {
         Subject subject = new Subject(name, credits);
         int subId = subjectDAO.addSubject(subject);
 
@@ -76,7 +76,7 @@ public abstract class GpaTracker {
         } else {
             // addSubject failed
         }
-
+        return subId;
     }
 
     public void markSubjectResult(String accountId, int semesterNo, int subjectId, String result) {

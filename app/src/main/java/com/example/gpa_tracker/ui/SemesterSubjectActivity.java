@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.gpa_tracker.R;
@@ -27,8 +28,11 @@ public class SemesterSubjectActivity extends AppCompatActivity {
     private TextView tvSemGpaCalculated;
     private EditText etAddModuleName;
     private EditText etAddModuleCredits;
+    private Spinner spinnerResults;
     private Button btnAddModule;
     private ListView lvSemModulesList;
+
+    private String selectedResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,8 @@ public class SemesterSubjectActivity extends AppCompatActivity {
         int semesterNo = Integer.parseInt(getIntent().getStringExtra("keySemesterNo"));
 
         initiateLayoutItems();
+
+        showResultsDropDownList(spinnerResults);
 
         this.gpaTracker = new PersistentGpaTracker(this);
 
@@ -69,7 +75,18 @@ public class SemesterSubjectActivity extends AppCompatActivity {
             }
         });
 
-        Log.i("SemesterSubjectActivity", "on create");
+        spinnerResults.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedResult = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         btnAddModule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,14 +95,17 @@ public class SemesterSubjectActivity extends AppCompatActivity {
 
                 Log.i("btnAddModule", "clicked");
 
-                gpaTracker.addSubject(addModuleName, addModuleCredits, accountId, semesterNo);
+                int newSubjectId = gpaTracker.addSubject(addModuleName, addModuleCredits, accountId, semesterNo);
+
+                if (!selectedResult.equals("--") && newSubjectId >= 0){
+                    gpaTracker.markSubjectResult(accountId, semesterNo, newSubjectId, selectedResult);
+                }
 
                 // show new modules of semester
                 showSemesterModules(accountId, semesterNo);
             }
         });
 
-//        gpaTracker;
     }
 
     private void initiateLayoutItems() {
@@ -93,6 +113,7 @@ public class SemesterSubjectActivity extends AppCompatActivity {
         tvSemGpaCalculated = findViewById(R.id.tvSemGpaCalculated);
         etAddModuleName = findViewById(R.id.etAddModuleName);
         etAddModuleCredits = findViewById(R.id.etAddModuleCredits);
+        spinnerResults = findViewById(R.id.spinnerResults);
         btnAddModule = findViewById(R.id.btnAddModule);
         lvSemModulesList = findViewById(R.id.lvSemModulesList);
     }
@@ -102,5 +123,12 @@ public class SemesterSubjectActivity extends AppCompatActivity {
         ArrayAdapter<Subject> subjectArrayAdapter = new ArrayAdapter<>(SemesterSubjectActivity.this, android.R.layout.simple_list_item_1, accountSemesterSubjects);
         lvSemModulesList.setAdapter(subjectArrayAdapter);
         Log.i("showSemesterModules", "added");
+    }
+
+    private void showResultsDropDownList(Spinner spinner) {
+        String[] results = {"--","A+","A","A-","B+","B","B-","C+","C","C-","D"};
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(SemesterSubjectActivity.this, android.R.layout.simple_spinner_item, results);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 }

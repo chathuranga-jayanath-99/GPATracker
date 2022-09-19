@@ -29,7 +29,6 @@ public class MarkResultActivity extends AppCompatActivity {
     private String selectedResult;
 
     private Spinner spinnerResults;
-    private String[] results = {"A+","A","A-","B+","B","B-","C+","C","C-","D"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +43,7 @@ public class MarkResultActivity extends AppCompatActivity {
         int semesterNo = Integer.parseInt(getIntent().getStringExtra("keySemesterNo"));
 
         initiateLayoutItems();
-
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MarkResultActivity.this, android.R.layout.simple_spinner_item, results);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerResults.setAdapter(adapter);
+        showResultsDropDownList(spinnerResults);
 
         this.gpaTracker = new PersistentGpaTracker(this);
 
@@ -60,7 +56,6 @@ public class MarkResultActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String result = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(MarkResultActivity.this, result, Toast.LENGTH_SHORT).show();
                 setSelectedResult(result);
             }
 
@@ -117,5 +112,12 @@ public class MarkResultActivity extends AppCompatActivity {
         btnMarkResult = findViewById(R.id.btnMarkResult);
         btnCancel = findViewById(R.id.btnCancel);
         spinnerResults = findViewById(R.id.spinnerResults);
+    }
+
+    private void showResultsDropDownList(Spinner spinner) {
+        String[] results = {"--", "A+","A","A-","B+","B","B-","C+","C","C-","D"};
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MarkResultActivity.this, android.R.layout.simple_spinner_item, results);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 }
