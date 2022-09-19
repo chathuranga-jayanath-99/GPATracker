@@ -90,79 +90,9 @@
             android:id="@+id/spinnerResults"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
             android:layout_below="@+id/llModuleResult"
-            android:layout_centerHorizontal="true"/>
-
-<!--        <RadioGroup-->
-<!--            android:id="@+id/rgResults"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/llModuleResult"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:orientation="horizontal"-->
-<!--            >-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbAPlus"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="A+" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbA"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="A" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbAMinus"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="A-" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbBPlus"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="B+" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbB"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="B" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbBMinus"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="B-" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbCPlus"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="C+" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbC"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="C" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbCMinus"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="C-" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbD"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="D" />-->
-<!--        </RadioGroup>-->
+            android:layout_centerHorizontal="true"
+            android:spinnerMode="dialog" />
 
         <LinearLayout
             android:layout_width="match_parent"

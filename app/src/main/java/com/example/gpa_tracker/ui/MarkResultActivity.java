@@ -23,9 +23,9 @@ public class MarkResultActivity extends AppCompatActivity {
 
     private TextView tvModuleName;
     private TextView tvModuleCredits;
-    private RadioGroup rgResults;
     private TextView tvModuleCurrentCredits;
     private Button btnMarkResult;
+    private Button btnCancel;
     private String selectedResult;
 
     private Spinner spinnerResults;
@@ -75,7 +75,6 @@ public class MarkResultActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String result = getSelectedResult();
 
-
                 if (!result.equals("")) {
 
                     gpaTracker.markSubjectResult(accountId, semesterNo,subjectId, result);
@@ -93,7 +92,13 @@ public class MarkResultActivity extends AppCompatActivity {
             }
         });
 
-
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MarkResultActivity.this, SemesterSubjectActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -109,8 +114,8 @@ public class MarkResultActivity extends AppCompatActivity {
         tvModuleName = findViewById(R.id.tvModuleName);
         tvModuleCredits = findViewById(R.id.tvModuleCredits);
         tvModuleCurrentCredits = findViewById(R.id.tvModuleCurrentCredits);
-//        rgResults = findViewById(R.id.rgResults);
         btnMarkResult = findViewById(R.id.btnMarkResult);
+        btnCancel = findViewById(R.id.btnCancel);
         spinnerResults = findViewById(R.id.spinnerResults);
     }
 }
