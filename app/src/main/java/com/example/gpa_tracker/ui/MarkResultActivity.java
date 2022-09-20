@@ -79,7 +79,6 @@ public class MarkResultActivity extends AppCompatActivity {
                     Intent intent = new Intent(MarkResultActivity.this, SemesterSubjectActivity.class);
                     intent.putExtra("keyAccountId", accountId);
                     intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
-
                     startActivity(intent);
                 }
                 else {
@@ -93,6 +92,8 @@ public class MarkResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MarkResultActivity.this, SemesterSubjectActivity.class);
+                intent.putExtra("keyAccountId", accountId);
+                intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
                 startActivity(intent);
             }
         });
