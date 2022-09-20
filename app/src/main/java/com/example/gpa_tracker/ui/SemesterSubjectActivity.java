@@ -30,6 +30,7 @@ public class SemesterSubjectActivity extends AppCompatActivity {
     private EditText etAddModuleCredits;
     private Spinner spinnerResults;
     private Button btnAddModule;
+    private Button btnGoBack;
     private ListView lvSemModulesList;
 
     private String selectedResult;
@@ -106,6 +107,16 @@ public class SemesterSubjectActivity extends AppCompatActivity {
             }
         });
 
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SemesterSubjectActivity.this, AccountSemesterActivity.class);
+                intent.putExtra("keyAccountId", accountId);
+                intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initiateLayoutItems() {
@@ -115,6 +126,7 @@ public class SemesterSubjectActivity extends AppCompatActivity {
         etAddModuleCredits = findViewById(R.id.etAddModuleCredits);
         spinnerResults = findViewById(R.id.spinnerResults);
         btnAddModule = findViewById(R.id.btnAddModule);
+        btnGoBack = findViewById(R.id.goBack);
         lvSemModulesList = findViewById(R.id.lvSemModulesList);
     }
 

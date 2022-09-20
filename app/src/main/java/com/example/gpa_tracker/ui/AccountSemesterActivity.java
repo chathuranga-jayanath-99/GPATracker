@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
 
     private TextView tvCalculatedOverallGpa;
     private ListView lvSemesterList;
+    private Button btnGoBack;
 
     private GpaTracker gpaTracker;
 
@@ -40,6 +42,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
         // Initiate layout items
         tvCalculatedOverallGpa = findViewById(R.id.tvCalculatedOverallGpa);
         lvSemesterList = findViewById(R.id.lvSemesterList);
+        btnGoBack = findViewById(R.id.btnGoBack);
 
         this.gpaTracker = new PersistentGpaTracker(this);
 
@@ -57,6 +60,14 @@ public class AccountSemesterActivity extends AppCompatActivity {
                 Intent intent = new Intent(AccountSemesterActivity.this, SemesterSubjectActivity.class);
                 intent.putExtra("keyAccountId", accountId);
                 intent.putExtra("keySemesterNo", String.valueOf(semester.getSemesterNo()));
+                startActivity(intent);
+            }
+        });
+
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AccountSemesterActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

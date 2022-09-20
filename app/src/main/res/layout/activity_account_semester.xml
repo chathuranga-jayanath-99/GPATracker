@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:layout_marginBottom="80dp"
     tools:context=".ui.AccountSemesterActivity">
 
     <RelativeLayout
@@ -42,12 +42,29 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <ListView
-        android:id="@+id/lvSemesterList"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tvYourSemester"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="60dp" />
+        android:layout_below="@id/tvYourSemester"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lvSemesterList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tvYourSemester"
+            android:layout_marginTop="10dp"
+            android:layout_weight="5"/>
+
+        <Button
+            android:id="@+id/btnGoBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Go Back" />
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>

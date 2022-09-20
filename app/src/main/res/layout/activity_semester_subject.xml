@@ -78,12 +78,30 @@
         android:text="Semester Modules"
         android:textSize="18dp" />
 
-    <ListView
-        android:id="@+id/lvSemModulesList"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tvSemModules"
-        android:layout_marginTop="8dp" />
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lvSemModulesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="5"/>
+
+        <Button
+            android:id="@+id/goBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go back"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+
 
 
 </RelativeLayout>
