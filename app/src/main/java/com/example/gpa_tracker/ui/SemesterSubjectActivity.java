@@ -126,7 +126,7 @@ public class SemesterSubjectActivity extends AppCompatActivity {
     }
 
     private void showResultsDropDownList(Spinner spinner) {
-        String[] results = {"--","A+","A","A-","B+","B","B-","C+","C","C-","D"};
+        String[] results = getResources().getStringArray(R.array.results);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(SemesterSubjectActivity.this, android.R.layout.simple_spinner_item, results);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
