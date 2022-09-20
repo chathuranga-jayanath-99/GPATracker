@@ -23,7 +23,6 @@ public class MarkResultActivity extends AppCompatActivity {
 
     private TextView tvModuleName;
     private TextView tvModuleCredits;
-    private TextView tvModuleCurrentCredits;
     private Button btnMarkResult;
     private Button btnCancel;
     private String selectedResult;
@@ -43,14 +42,17 @@ public class MarkResultActivity extends AppCompatActivity {
         int semesterNo = Integer.parseInt(getIntent().getStringExtra("keySemesterNo"));
 
         initiateLayoutItems();
+
+        // show drop down list
         showResultsDropDownList(spinnerResults);
+        // set current result in drop down list
+        spinnerResults.setSelection(getSelectedResultIndex(spinnerResults, subjectResult));
 
         this.gpaTracker = new PersistentGpaTracker(this);
 
         // initiate view
         tvModuleName.setText(subjectName);
         tvModuleCredits.setText(String.valueOf(subjectCredits));
-        tvModuleCurrentCredits.setText(subjectResult);
 
         spinnerResults.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -97,6 +99,15 @@ public class MarkResultActivity extends AppCompatActivity {
 
     }
 
+    private int getSelectedResultIndex(Spinner spinnerResults, String subjectResult) {
+        for (int i = 0; i < spinnerResults.getCount(); i++) {
+            if (spinnerResults.getItemAtPosition(i).equals(subjectResult)){
+                return i;
+            }
+        }
+        return 0;
+    }
+
     private void setSelectedResult(String result) {
         this.selectedResult = result;
     }
@@ -108,7 +119,6 @@ public class MarkResultActivity extends AppCompatActivity {
     private void initiateLayoutItems() {
         tvModuleName = findViewById(R.id.tvModuleName);
         tvModuleCredits = findViewById(R.id.tvModuleCredits);
-        tvModuleCurrentCredits = findViewById(R.id.tvModuleCurrentCredits);
         btnMarkResult = findViewById(R.id.btnMarkResult);
         btnCancel = findViewById(R.id.btnCancel);
         spinnerResults = findViewById(R.id.spinnerResults);
