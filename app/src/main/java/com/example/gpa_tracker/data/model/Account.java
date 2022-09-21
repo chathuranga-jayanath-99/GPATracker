@@ -57,7 +57,6 @@ public class Account {
             earnedMarks +=  earnPoints * subjectCredits;
             maxMarks += this.maxGpa * subjectCredits;
 
-
         }
 
         if (maxMarks!=0.0f) {
