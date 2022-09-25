@@ -18,7 +18,9 @@ public class Account {
         this.maxGpa = maxGpa;
         this.noOfSemesters = noOfSemesters;
 
-        semesters = new Semester[noOfSemesters];
+        if (noOfSemesters > 0){
+            semesters = new Semester[noOfSemesters];
+        }
     }
 
     public float getOverallGpa() {

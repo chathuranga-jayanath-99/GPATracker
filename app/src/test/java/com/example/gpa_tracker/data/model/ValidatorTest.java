@@ -52,5 +52,44 @@ public class ValidatorTest {
         Validator validator = new Validator();
         assertFalse(validator.validateSemester(semester));
     }
-    
+
+    @Test
+    public void validateValidAccount(){
+        Account account = new Account("111", "Chathuranga", 4.2f, 8);
+        Validator validator = new Validator();
+
+        assertTrue(validator.validateAccount(account));
+    }
+
+    @Test
+    public void validateAccountWithEmptyId(){
+        Account account = new Account("", "Chathuranga", 4.2f, 8);
+        Validator validator = new Validator();
+
+        assertFalse(validator.validateAccount(account));
+    }
+
+    @Test
+    public void validateAccountWithEmptyName(){
+        Account account = new Account("111", "", 4.2f, 8);
+        Validator validator = new Validator();
+
+        assertFalse(validator.validateAccount(account));
+    }
+
+    @Test
+    public void validateAccountWithInvalidGpa(){
+        Account account = new Account("111", "Chathuranga", 1.0f, 8);
+        Validator validator = new Validator();
+
+        assertFalse(validator.validateAccount(account));
+    }
+
+    @Test
+    public void validateAccountWithInvalidNoOfSemesters(){
+        Account account = new Account("111", "Chathuranga", 4.2f, -8);
+        Validator validator = new Validator();
+
+        assertFalse(validator.validateAccount(account));
+    }
 }
