@@ -79,7 +79,17 @@ public class AccountSemesterActivity extends AppCompatActivity {
         if (semestersOfAccount == null) Log.i("showSemesters", " empty array");
         else Log.i("showSemesters", " not empty array" + semestersOfAccount.size());
 
-        ArrayAdapter semestersArrayAdapter = new ArrayAdapter<Semester>(AccountSemesterActivity.this, android.R.layout.simple_list_item_1, semestersOfAccount);
-        lvSemesterList.setAdapter(semestersArrayAdapter);
+//        ArrayAdapter semestersArrayAdapter = new ArrayAdapter<Semester>(AccountSemesterActivity.this, android.R.layout.simple_list_item_1, semestersOfAccount);
+        String[] semesterNameList = this.getSemesterNameList(semestersOfAccount.size());
+        SemesterListAdapter semesterListAdapter = new SemesterListAdapter(getApplicationContext(), semesterNameList);
+        lvSemesterList.setAdapter(semesterListAdapter);
+    }
+
+    private String[] getSemesterNameList(int noOfSemesters){
+        String[] semesterNameList = new String[noOfSemesters];
+        for (int i = 0; i < noOfSemesters; i++) {
+            semesterNameList[i] = "Semester: " + String.valueOf(i+1);
+        }
+        return semesterNameList;
     }
 }

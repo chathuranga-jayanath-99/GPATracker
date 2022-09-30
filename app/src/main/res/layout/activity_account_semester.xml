@@ -54,7 +54,10 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/tvYourSemester"
             android:layout_marginTop="10dp"
-            android:layout_weight="5"/>
+            android:layout_weight="5"
+            tools:listitem="@layout/activity_semester_list_view"
+            android:divider="@color/black"
+            />
 
         <Button
             android:id="@+id/btnGoBack"
