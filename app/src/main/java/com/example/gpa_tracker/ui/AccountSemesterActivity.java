@@ -55,8 +55,8 @@ public class AccountSemesterActivity extends AppCompatActivity {
         lvSemesterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.i("SEMESTER_LIST_VIEW", "Item clicked at position: "+i);
                 Semester semester = (Semester) adapterView.getItemAtPosition(i);
-//                Log.i("debug", semester.toString());
                 Intent intent = new Intent(AccountSemesterActivity.this, SemesterSubjectActivity.class);
                 intent.putExtra("keyAccountId", accountId);
                 intent.putExtra("keySemesterNo", String.valueOf(semester.getSemesterNo()));
@@ -81,7 +81,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
 
 //        ArrayAdapter semestersArrayAdapter = new ArrayAdapter<Semester>(AccountSemesterActivity.this, android.R.layout.simple_list_item_1, semestersOfAccount);
         String[] semesterNameList = this.getSemesterNameList(semestersOfAccount.size());
-        SemesterListAdapter semesterListAdapter = new SemesterListAdapter(getApplicationContext(), semesterNameList);
+        SemesterListAdapter semesterListAdapter = new SemesterListAdapter(getApplicationContext(), semestersOfAccount);
         lvSemesterList.setAdapter(semesterListAdapter);
     }
 
