@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:gravity="center"
     tools:context=".ui.SemesterListView">
 
     <TextView
         android:id="@+id/tvSem"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:gravity="center"
-        android:text="My Semester"/>
+        android:text="My Semester"
+        android:textSize="20dp"/>
 </LinearLayout>
