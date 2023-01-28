@@ -5,32 +5,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
-import com.example.gpa_tracker.R;
-import com.example.gpa_tracker.data.model.Semester;
+import com.example.gpa_tracker.data.model.Subject;
 
 import java.util.List;
 
-public class SemesterListAdapter extends BaseAdapter {
+public class SubjectListAdapter extends BaseAdapter {
     private Context context;
-    private List<Semester> semesterList;
+    private List<Subject> subjectList;
     private LayoutInflater inflater;
 
-    public SemesterListAdapter(Context context, List<Semester> semesterList) {
+    public SubjectListAdapter(Context context, List<Subject> subjectList) {
         this.context = context;
-        this.semesterList = semesterList;
+        this.subjectList = subjectList;
         this.inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return semesterList.size();
+        return 0;
     }
 
     @Override
     public Object getItem(int i) {
-        return this.semesterList.get(i);
+        return null;
     }
 
     @Override
@@ -40,10 +38,6 @@ public class SemesterListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflater.inflate(R.layout.activity_semester_list_view, null);
-        TextView textView = (TextView) view.findViewById(R.id.tvSem);
-        textView.setText(semesterList.get(i).toString());
-        return view;
+        return null;
     }
-
 }

@@ -40,11 +40,6 @@ public class Semester {
 
     @Override
     public String toString() {
-        return "Semester{" +
-                "accountId='" + accountId + '\'' +
-                ", semesterNo=" + semesterNo +
-                ", title='" + title + '\'' +
-                ", subjectList=" + subjectList +
-                '}';
+        return "Semester: " + this.semesterNo;
     }
 }
