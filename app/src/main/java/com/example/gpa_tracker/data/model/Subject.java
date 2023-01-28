@@ -40,11 +40,6 @@ public class Subject {
 
     @Override
     public String toString() {
-        return "Subject{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", credits=" + credits +
-                ", result='" + result + '\'' +
-                '}';
+        return name + " | credits: " + credits + " | result: " + result;
     }
 }
