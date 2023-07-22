@@ -13,11 +13,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gpa_tracker.R;
 import com.example.gpa_tracker.control.GpaTracker;
 import com.example.gpa_tracker.control.PersistentGpaTracker;
 import com.example.gpa_tracker.data.model.Subject;
+import com.example.gpa_tracker.data.model.Validator;
 
 import java.util.List;
 
@@ -91,16 +93,23 @@ public class SemesterSubjectActivity extends AppCompatActivity {
         btnAddModule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String addModuleName = etAddModuleName.getText().toString();
-                float addModuleCredits = Float.parseFloat(etAddModuleCredits.getText().toString());
+                if (Validator.validateSubjectDetails(etAddModuleName.getText().toString(), etAddModuleCredits.getText().toString())){
+                    String addModuleName = etAddModuleName.getText().toString();
+                    float addModuleCredits = Float.parseFloat(etAddModuleCredits.getText().toString());
 
-                Log.i("btnAddModule", "clicked");
+                    Log.i("btnAddModule", "clicked");
 
-                int newSubjectId = gpaTracker.addSubject(addModuleName, addModuleCredits, accountId, semesterNo);
+                    int newSubjectId = gpaTracker.addSubject(addModuleName, addModuleCredits, accountId, semesterNo);
 
-                if (!selectedResult.equals("--") && newSubjectId >= 0){
-                    gpaTracker.markSubjectResult(accountId, semesterNo, newSubjectId, selectedResult);
+                    if (!selectedResult.equals("--") && newSubjectId >= 0){
+                        gpaTracker.markSubjectResult(accountId, semesterNo, newSubjectId, selectedResult);
+                    }
                 }
+                else {
+                    Log.i("invalid-input", "Credits should be a float");
+                    Toast.makeText(SemesterSubjectActivity.this, "Module Name can't be empty and Credits should be a float", Toast.LENGTH_SHORT).show();
+                }
+                
 
                 // show new modules of semester
                 showSemesterModules(accountId, semesterNo);

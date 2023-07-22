@@ -6,6 +6,7 @@ import com.example.gpa_tracker.data.impl.PersistentAccountDAO;
 import com.example.gpa_tracker.data.impl.PersistentSemesterDAO;
 import com.example.gpa_tracker.data.impl.PersistentSemesterSubjectDAO;
 import com.example.gpa_tracker.data.impl.PersistentSubjectDAO;
+import com.example.gpa_tracker.data.model.Validator;
 
 public class PersistentGpaTracker extends GpaTracker {
     private Context context;
@@ -29,5 +30,8 @@ public class PersistentGpaTracker extends GpaTracker {
 
         PersistentSubjectDAO persistentSubjectDAO = new PersistentSubjectDAO(this.context);
         setSubjectDAO(persistentSubjectDAO);
+
+        Validator validator = new Validator();
+        setValidator(validator);
     }
 }

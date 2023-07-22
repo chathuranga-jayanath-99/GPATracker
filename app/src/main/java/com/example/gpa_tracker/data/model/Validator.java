@@ -1,7 +1,6 @@
 package com.example.gpa_tracker.data.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Validator {
     private ArrayList<Float> gpaList;
@@ -10,6 +9,22 @@ public class Validator {
         gpaList = new ArrayList<Float>();
         gpaList.add(4.2f);
         gpaList.add(4.0f);
+    }
+
+    public static boolean validateSubjectDetails(String name, String credits){
+        // String name, float credits
+        if (!name.equals("") && !credits.equals("")) {
+            try {
+                Float.parseFloat(credits);
+                return true;
+            }
+            catch (Exception e) {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean validateSubject(Subject subject){
@@ -53,5 +68,4 @@ public class Validator {
             return  true;
         }
     }
-
 }

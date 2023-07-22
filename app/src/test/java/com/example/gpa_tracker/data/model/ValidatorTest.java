@@ -62,6 +62,14 @@ public class ValidatorTest {
     }
 
     @Test
+    public void validateAccountWithEmptyData(){
+        Account account = new Account("", "", 0.0f, 0);
+        Validator validator = new Validator();
+
+        assertFalse(validator.validateAccount(account));
+    }
+
+    @Test
     public void validateAccountWithEmptyId(){
         Account account = new Account("", "Chathuranga", 4.2f, 8);
         Validator validator = new Validator();

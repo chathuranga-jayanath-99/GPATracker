@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,26 +45,33 @@ public class MainActivity extends AppCompatActivity {
         btnAddAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String id = etAccountId.getText().toString();
-                String name = etHolderName.getText().toString();
-                int noOfSemesters = Integer.parseInt(etNumberOfSemesters.getText().toString());
-                float maxGpa;
+                // inputs shouldn't be empty
+                if (!etAccountId.getText().toString().equals("") && !etHolderName.getText().toString().equals("") && !etNumberOfSemesters.getText().toString().equals("")) {
+                    String id = etAccountId.getText().toString();
+                    String name = etHolderName.getText().toString();
+                    int noOfSemesters = Integer.parseInt(etNumberOfSemesters.getText().toString());
+                    float maxGpa;
 
-                int checkedRadioButtonId = rgMaxGpa.getCheckedRadioButtonId();
-                switch (checkedRadioButtonId) {
-                    case R.id.rbGpaHigh:
-                        maxGpa=4.2f;
-                        break;
-                    case R.id.rbGpaLow:
-                        maxGpa=4.0f;
-                        break;
-                    default:
-                        maxGpa=4.0f;
-                        break;
+                    int checkedRadioButtonId = rgMaxGpa.getCheckedRadioButtonId();
+                    switch (checkedRadioButtonId) {
+                        case R.id.rbGpaHigh:
+                            maxGpa=4.2f;
+                            break;
+                        case R.id.rbGpaLow:
+                            maxGpa=4.0f;
+                            break;
+                        default:
+                            maxGpa=4.0f;
+                            break;
+                    }
+
+                    gpaTracker.addAccount(id, name, maxGpa, noOfSemesters);
+
                 }
-
-                gpaTracker.addAccount(id, name, maxGpa, noOfSemesters);
-
+                else {
+                    Log.i("invalid-input", "inputs are empty");
+                    Toast.makeText(MainActivity.this, "Inputs should be filled", Toast.LENGTH_SHORT).show();
+                }
                 // show new accounts
                 showAvailableAccountsIds();
 

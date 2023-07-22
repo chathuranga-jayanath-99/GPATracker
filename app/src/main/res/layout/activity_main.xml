@@ -57,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rgMaxGpa"
         android:hint="Number of Semesters"
+        android:inputType="number"
         android:textSize="18sp" />
 
     <Button

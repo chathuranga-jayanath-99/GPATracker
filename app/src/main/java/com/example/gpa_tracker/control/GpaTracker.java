@@ -11,6 +11,7 @@ import com.example.gpa_tracker.data.model.Account;
 import com.example.gpa_tracker.data.model.Semester;
 import com.example.gpa_tracker.data.model.SemesterSubject;
 import com.example.gpa_tracker.data.model.Subject;
+import com.example.gpa_tracker.data.model.Validator;
 import com.example.gpa_tracker.ui.MainActivity;
 import com.example.gpa_tracker.ui.SemesterSubjectActivity;
 
@@ -21,6 +22,8 @@ public abstract class GpaTracker {
     private SemesterDAO semesterDAO;
     private SemesterSubjectDAO semesterSubjectDAO;
     private SubjectDAO subjectDAO;
+
+    private Validator validator;
 
     public float getOverallGpaOfAccount(String accountId) {
         Account account = accountDAO.getAccount(accountId);
@@ -47,13 +50,20 @@ public abstract class GpaTracker {
 
     public void addAccount(String id, String name, float maxGpa, int noOfSemesters) {
         Account account = new Account(id, name, maxGpa, noOfSemesters);
-        accountDAO.addAccount(account);
 
-        for (int i = 0; i < account.getNoOfSemesters(); i++) {
-            Semester semester = new Semester(account.getId(), i + 1);
-            semesterDAO.addSemester(semester);
-            Log.i("addAccount", "semester added" + String.valueOf(i + 1));
+        if (this.validator.validateAccount(account)) {
+            accountDAO.addAccount(account);
+
+            for (int i = 0; i < account.getNoOfSemesters(); i++) {
+                Semester semester = new Semester(account.getId(), i + 1);
+                semesterDAO.addSemester(semester);
+                Log.i("addAccount", "semester added" + String.valueOf(i + 1));
+            }
         }
+        else {
+            Log.i("error", "invalid account");
+        }
+
     }
 
     public List<Semester> getSemestersOfAccount(String accountId) {
@@ -109,6 +119,8 @@ public abstract class GpaTracker {
     public void setSubjectDAO(SubjectDAO subjectDAO) {
         this.subjectDAO = subjectDAO;
     }
+
+    public void setValidator(Validator validator) { this.validator = validator; }
 
     public abstract void setup();
 }
