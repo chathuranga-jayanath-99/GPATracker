@@ -46,11 +46,9 @@ public class SemesterSubjectActivity extends AppCompatActivity {
         int semesterNo = Integer.parseInt(getIntent().getStringExtra("keySemesterNo"));
 
         initiateLayoutItems();
-
         showResultsDropDownList(spinnerResults);
 
         this.gpaTracker = new PersistentGpaTracker(this);
-
         // fill layout
         if (semesterNo!=-1) {
             float semesterGpaOfAccount = this.gpaTracker.getSemesterGpaOfAccount(accountId, semesterNo);
@@ -97,21 +95,16 @@ public class SemesterSubjectActivity extends AppCompatActivity {
                     String addModuleName = etAddModuleName.getText().toString();
                     float addModuleCredits = Float.parseFloat(etAddModuleCredits.getText().toString());
 
-                    Log.i("btnAddModule", "clicked");
-
                     int newSubjectId = gpaTracker.addSubject(addModuleName, addModuleCredits, accountId, semesterNo);
-
                     if (!selectedResult.equals("--") && newSubjectId >= 0){
                         gpaTracker.markSubjectResult(accountId, semesterNo, newSubjectId, selectedResult);
                     }
+                    clearInputs();
                 }
                 else {
                     Log.i("invalid-input", "Credits should be a float");
                     Toast.makeText(SemesterSubjectActivity.this, "Module Name can't be empty and Credits should be a float", Toast.LENGTH_SHORT).show();
                 }
-                
-
-                // show new modules of semester
                 showSemesterModules(accountId, semesterNo);
             }
         });
@@ -126,6 +119,12 @@ public class SemesterSubjectActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void clearInputs() {
+        etAddModuleName.setText("");
+        etAddModuleCredits.setText("");
+        spinnerResults.setSelection(0);
     }
 
     private void initiateLayoutItems() {
