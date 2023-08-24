@@ -98,6 +98,8 @@ public class SemesterSubjectActivity extends AppCompatActivity {
                     int newSubjectId = gpaTracker.addSubject(addModuleName, addModuleCredits, accountId, semesterNo);
                     if (!selectedResult.equals("--") && newSubjectId >= 0){
                         gpaTracker.markSubjectResult(accountId, semesterNo, newSubjectId, selectedResult);
+                        float newSemesterGpaOfAccount = gpaTracker.getSemesterGpaOfAccount(accountId, semesterNo);
+                        tvSemGpaCalculated.setText(String.valueOf(newSemesterGpaOfAccount));
                     }
                     clearInputs();
                 }
