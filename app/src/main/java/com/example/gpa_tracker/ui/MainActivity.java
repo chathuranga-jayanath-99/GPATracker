@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -64,9 +63,7 @@ public class MainActivity extends AppCompatActivity {
                             maxGpa=4.0f;
                             break;
                     }
-
                     gpaTracker.addAccount(id, name, maxGpa, noOfSemesters);
-
                 }
                 else {
                     Log.i("invalid-input", "inputs are empty");
@@ -74,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 // show new accounts
                 showAvailableAccountsIds();
-
+                clearInputFields();
             }
         });
 
@@ -91,6 +88,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void clearInputFields() {
+        etAccountId.setText("");
+        etHolderName.setText("");
+        etNumberOfSemesters.setText("");
+        rgMaxGpa.clearCheck();
+    }
+
     private void initiateLayoutItems() {
         etAccountId = findViewById(R.id.etAccountId);
         etHolderName = findViewById(R.id.etHolderName);
@@ -105,5 +109,4 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter accountsIdArrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, accountIdsList);
         lvAccountsIdList.setAdapter(accountsIdArrayAdapter);
     }
-
 }
