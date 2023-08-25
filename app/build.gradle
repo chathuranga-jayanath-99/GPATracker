@@ -28,6 +28,18 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+
+    lintOptions {
+        // Enable or disable specific checks
+        disable 'Instantiatable'
+
+        // Change severity levels
+        warning 'HardcodedText'
+    }
 }
 
 dependencies {
