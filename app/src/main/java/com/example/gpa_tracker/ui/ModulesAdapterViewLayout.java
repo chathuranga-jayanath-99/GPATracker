@@ -14,8 +14,6 @@ import java.util.List;
 
 public class ModulesAdapterViewLayout extends ArrayAdapter<Subject> {
 
-
-
     public ModulesAdapterViewLayout(@NonNull Context context, int resource, ArrayList<Subject> objects) {
         super(context, resource, objects);
     }

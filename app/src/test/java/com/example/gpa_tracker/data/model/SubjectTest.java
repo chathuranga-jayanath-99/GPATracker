@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class SubjectTest {
-
     private Subject subject = new Subject(101, "CS-101", 3);
 
     @Test
@@ -18,6 +17,6 @@ public class SubjectTest {
     @Test
     public void setInvalidResult() {
         subject.setResult("BB");
-        assertFalse(subject.getResult() != null);
+        assertNull(subject.getResult());
     }
 }

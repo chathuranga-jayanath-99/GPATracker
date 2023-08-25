@@ -30,10 +30,6 @@ public class Subject {
         if (results.contains(result)) {
             this.result = result;
         }
-        else {
-            Log.i("error", "invalid result is provided");
-        }
-
     }
 
     public int getId() {
