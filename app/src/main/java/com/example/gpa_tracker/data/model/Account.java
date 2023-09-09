@@ -1,5 +1,7 @@
 package com.example.gpa_tracker.data.model;
 
+import com.example.gpa_tracker.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,10 +42,10 @@ public class Account {
         }
 
         if (maxMarks!=0.0f) {
-            return earnedMarks / maxMarks * this.maxGpa;
+            float overallGpa = earnedMarks / maxMarks * this.maxGpa;
+            return Utils.roundToTwoDecimalPlaces(overallGpa);
         }
         return 0.0f;
-
     }
 
     public float getSemesterGpa(Semester semester) {
@@ -58,11 +60,11 @@ public class Account {
 
             earnedMarks +=  earnPoints * subjectCredits;
             maxMarks += this.maxGpa * subjectCredits;
-
         }
 
         if (maxMarks!=0.0f) {
-            return earnedMarks / maxMarks * this.maxGpa;
+            float semesterGpa = earnedMarks / maxMarks * this.maxGpa;
+            return Utils.roundToTwoDecimalPlaces(semesterGpa);
         }
         return 0.0f;
     }
