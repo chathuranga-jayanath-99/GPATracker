@@ -27,20 +27,16 @@ public abstract class GpaTracker {
 
     public float getOverallGpaOfAccount(String accountId) {
         Account account = accountDAO.getAccount(accountId);
-
         for (int i = 0; i < account.getNoOfSemesters(); i++) {
             Semester semester = semesterSubjectDAO.getSemesterWithSubjects(accountId, i + 1);
             account.addSemester(semester, i + 1);
         }
-
         return account.getOverallGpa();
     }
 
     public float getSemesterGpaOfAccount(String accountId, int semesterNo) {
         Account account = accountDAO.getAccount(accountId);
-
         Semester semester = semesterSubjectDAO.getSemesterWithSubjects(accountId, semesterNo);
-
         return account.getSemesterGpa(semester);
     }
 

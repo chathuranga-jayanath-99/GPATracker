@@ -2,6 +2,8 @@ package com.example.gpa_tracker.data.model;
 
 import static org.junit.Assert.*;
 
+import com.example.gpa_tracker.Utils;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class AccountTest {
         float gained = 3*4.2f+2*3.3f+2*4.0f+3*3.3f+2*3.3f+3*2.3f+3*1f;
         float maxGained =  (3*4+2*3)*4.2f;
         float gpaCalculated = gained / maxGained * account.getMaxGpa();
+        gpaCalculated = Utils.roundToTwoDecimalPlaces(gpaCalculated);
 
         for (int i = 0; i < subjects.size(); i++) {
             semester.addSubject(subjects.get(i));
