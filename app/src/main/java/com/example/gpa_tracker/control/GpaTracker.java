@@ -12,6 +12,7 @@ import com.example.gpa_tracker.data.model.Semester;
 import com.example.gpa_tracker.data.model.SemesterSubject;
 import com.example.gpa_tracker.data.model.Subject;
 import com.example.gpa_tracker.data.model.Validator;
+import com.example.gpa_tracker.ui.AccountListAdapter;
 import com.example.gpa_tracker.ui.MainActivity;
 import com.example.gpa_tracker.ui.SemesterSubjectActivity;
 
@@ -42,6 +43,10 @@ public abstract class GpaTracker {
 
     public List<String> getAccountIdsList() {
         return accountDAO.getAccountIdsList();
+    }
+
+    public List<Account> getAccounts() {
+        return accountDAO.getAccountsList();
     }
 
     public void addAccount(String id, String name, float maxGpa, int noOfSemesters) {
