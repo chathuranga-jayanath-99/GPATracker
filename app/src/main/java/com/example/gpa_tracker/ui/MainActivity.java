@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.gpa_tracker.R;
 import com.example.gpa_tracker.control.GpaTracker;
 import com.example.gpa_tracker.control.PersistentGpaTracker;
+import com.example.gpa_tracker.data.model.Account;
 
 import java.util.List;
 
@@ -105,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAvailableAccountsIds() {
-        List<String> accountIdsList = gpaTracker.getAccountIdsList();
-        ArrayAdapter accountsIdArrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, accountIdsList);
-        lvAccountsIdList.setAdapter(accountsIdArrayAdapter);
+        List<Account> accountList = gpaTracker.getAccounts();
+        AccountListAdapter accountListAdapter = new AccountListAdapter(MainActivity.this, R.layout.accounts_adapter_view_layout, accountList);
+        lvAccountsIdList.setAdapter(accountListAdapter);
     }
 }
