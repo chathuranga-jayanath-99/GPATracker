@@ -79,10 +79,9 @@ public class MainActivity extends AppCompatActivity {
         lvAccountsIdList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String clickedAccountId = (String) adapterView.getItemAtPosition(i);
-
+                Account clickedAccount = (Account) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(MainActivity.this, AccountSemesterActivity.class);
-                intent.putExtra("keyAccountId", clickedAccountId);
+                intent.putExtra("keyAccountId", clickedAccount.getId());
                 startActivity(intent);
 
             }
