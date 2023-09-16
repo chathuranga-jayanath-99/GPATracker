@@ -14,7 +14,7 @@
         android:textSize="18dp"
         android:id="@+id/tvModuleName"
         android:text="Programming"
-        android:layout_weight="60"/>
+        android:layout_weight="33.3"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,13 +22,14 @@
         android:text="3"
         android:textSize="18dp"
         android:id="@+id/tvModuleCredits"
-        android:layout_weight="20"/>
+        android:layout_weight="33.3"/>
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
+        android:id="@+id/tvModuleResult"
         android:text="A+"
-        android:textSize="18dp"/>
+        android:textSize="18dp"
+        android:layout_weight="33.3"/>
 
 </LinearLayout>
