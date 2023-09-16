@@ -142,9 +142,8 @@ public class SemesterSubjectActivity extends AppCompatActivity {
 
     private void showSemesterModules(String accountId, int semesterNo) {
         List<Subject> accountSemesterSubjects = gpaTracker.getAccountSemesterSubjects(accountId, semesterNo);
-        ArrayAdapter<Subject> subjectArrayAdapter = new ArrayAdapter<>(SemesterSubjectActivity.this, android.R.layout.simple_list_item_1, accountSemesterSubjects);
-        lvSemModulesList.setAdapter(subjectArrayAdapter);
-        Log.i("showSemesterModules", "added");
+        SubjectListAdapter subjectListAdapter = new SubjectListAdapter(SemesterSubjectActivity.this, R.layout.modules_adapter_view_layout, accountSemesterSubjects);
+        lvSemModulesList.setAdapter(subjectListAdapter);
     }
 
     private void showResultsDropDownList(Spinner spinner) {

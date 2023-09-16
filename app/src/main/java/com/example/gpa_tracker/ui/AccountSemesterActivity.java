@@ -79,7 +79,6 @@ public class AccountSemesterActivity extends AppCompatActivity {
         if (semestersOfAccount == null) Log.i("showSemesters", " empty array");
         else Log.i("showSemesters", " not empty array" + semestersOfAccount.size());
 
-//        ArrayAdapter semestersArrayAdapter = new ArrayAdapter<Semester>(AccountSemesterActivity.this, android.R.layout.simple_list_item_1, semestersOfAccount);
         String[] semesterNameList = this.getSemesterNameList(semestersOfAccount.size());
         SemesterListAdapter semesterListAdapter = new SemesterListAdapter(getApplicationContext(), semestersOfAccount);
         lvSemesterList.setAdapter(semesterListAdapter);
