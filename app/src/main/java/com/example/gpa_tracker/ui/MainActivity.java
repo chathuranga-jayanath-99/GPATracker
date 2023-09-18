@@ -104,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
         lvAccountsIdList = findViewById(R.id.lvAccountsIdList);
     }
 
-    private void showAvailableAccountsIds() {
+    public void showAvailableAccountsIds() {
         List<Account> accountList = gpaTracker.getAccounts();
-        AccountListAdapter accountListAdapter = new AccountListAdapter(MainActivity.this, R.layout.accounts_adapter_view_layout, accountList);
+        AccountListAdapter accountListAdapter = new AccountListAdapter(MainActivity.this, R.layout.accounts_adapter_view_layout, accountList, gpaTracker, lvAccountsIdList);
         lvAccountsIdList.setAdapter(accountListAdapter);
     }
 }
