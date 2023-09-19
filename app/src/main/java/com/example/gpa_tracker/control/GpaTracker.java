@@ -67,6 +67,10 @@ public abstract class GpaTracker {
 
     }
 
+    public void deleteAccount(String accountId) {
+        accountDAO.removeAccount(accountId);
+    }
+
     public List<Semester> getSemestersOfAccount(String accountId) {
         return semesterDAO.getSemestersOfAccount(accountId);
     }

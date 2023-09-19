@@ -1,18 +1,19 @@
 package com.example.gpa_tracker.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gpa_tracker.R;
 import com.example.gpa_tracker.control.GpaTracker;
@@ -83,7 +84,31 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AccountSemesterActivity.class);
                 intent.putExtra("keyAccountId", clickedAccount.getId());
                 startActivity(intent);
+            }
+        });
 
+        lvAccountsIdList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Account clickedAccount = (Account) adapterView.getItemAtPosition(i);
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Confirmation");
+                builder.setMessage("Are you sure you want to delete account: " + clickedAccount.getName() + "-" + clickedAccount.getId() + "?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        gpaTracker.deleteAccount(clickedAccount.getId());
+                        showAvailableAccountsIds();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.show();
+                return true;
             }
         });
     }
@@ -104,9 +129,9 @@ public class MainActivity extends AppCompatActivity {
         lvAccountsIdList = findViewById(R.id.lvAccountsIdList);
     }
 
-    private void showAvailableAccountsIds() {
+    public void showAvailableAccountsIds() {
         List<Account> accountList = gpaTracker.getAccounts();
-        AccountListAdapter accountListAdapter = new AccountListAdapter(MainActivity.this, R.layout.accounts_adapter_view_layout, accountList);
+        AccountListAdapter accountListAdapter = new AccountListAdapter(MainActivity.this, R.layout.accounts_adapter_view_layout, accountList, gpaTracker, lvAccountsIdList);
         lvAccountsIdList.setAdapter(accountListAdapter);
     }
 }

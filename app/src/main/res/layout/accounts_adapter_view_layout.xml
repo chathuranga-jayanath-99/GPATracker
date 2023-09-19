@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.ModulesAdapterViewLayout"
     android:orientation="horizontal"
+    android:gravity="center"
     >
 
     <TextView
@@ -21,7 +22,6 @@
         android:text="Supul"
         android:textSize="18dp"
         android:id="@+id/tvAccountName"
-        android:layout_weight="33.3"
-        android:gravity="end"/>
+        android:layout_weight="33.3"/>
 
 </LinearLayout>
