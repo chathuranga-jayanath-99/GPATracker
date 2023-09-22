@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gpa_tracker">
+    package="com.cj_apps.gpa_tracker">
 
     <application
         android:allowBackup="true"
@@ -10,25 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GPATracker">
         <activity
-            android:name=".ui.SubjectListView"
+            android:name="com.cj_apps.gpa_tracker.ui.SubjectListView"
             android:exported="false" />
         <activity
-            android:name=".ui.SemesterListView"
+            android:name="com.cj_apps.gpa_tracker.ui.SemesterListView"
             android:exported="false" />
         <activity
-            android:name=".ui.MarkResultActivity"
+            android:name="com.cj_apps.gpa_tracker.ui.MarkResultActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ModulesAdapterViewLayout"
+            android:name="com.cj_apps.gpa_tracker.ui.ModulesAdapterViewLayout"
             android:exported="false" />
         <activity
-            android:name=".ui.SemesterSubjectActivity"
+            android:name="com.cj_apps.gpa_tracker.ui.SemesterSubjectActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AccountSemesterActivity"
+            android:name="com.cj_apps.gpa_tracker.ui.AccountSemesterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.cj_apps.gpa_tracker.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
