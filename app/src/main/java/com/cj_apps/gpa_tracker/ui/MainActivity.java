@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup rgMaxGpa;
     private EditText etNumberOfSemesters;
     private Button btnAddAccount;
+    private Button btnExit;
     private ListView lvAccountsIdList;
 
     @Override
@@ -74,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
                 // show new accounts
                 showAvailableAccountsIds();
                 clearInputFields();
+            }
+        });
+
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
@@ -126,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         rgMaxGpa = findViewById(R.id.rgMaxGpa);
         etNumberOfSemesters = findViewById(R.id.etNumberOfSemesters);
         btnAddAccount = findViewById(R.id.btnAddAccount);
+        btnExit = findViewById(R.id.btnExit);
         lvAccountsIdList = findViewById(R.id.lvAccountsIdList);
     }
 

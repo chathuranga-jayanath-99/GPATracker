@@ -88,8 +88,16 @@
     <ListView
         android:id="@+id/lvAccountsIdList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tvSelectAccount"
-        android:layout_marginBottom="60dp" />
+        android:layout_height="300dp"
+        android:layout_below="@id/tvSelectAccount" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lvAccountsIdList"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:text="Exit"/>
 
 </RelativeLayout>
