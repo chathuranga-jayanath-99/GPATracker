@@ -20,6 +20,12 @@ import com.cj_apps.gpa_tracker.control.GpaTracker;
 import com.cj_apps.gpa_tracker.control.PersistentGpaTracker;
 import com.cj_apps.gpa_tracker.data.model.Account;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        
         initiateLayoutItems();
 
         this.gpaTracker = new PersistentGpaTracker(this);
