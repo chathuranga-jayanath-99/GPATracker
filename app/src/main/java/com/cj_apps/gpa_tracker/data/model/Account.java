@@ -67,6 +67,7 @@ public class Account {
     }
 
     private float getEarnedPointsFromResult(String result) {
+        if (result == null) return this.maxGpa;
         if (this.maxGpa == 4.2f && result.equals("A+")) return 4.2f;
 
         switch (result) {
