@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AccountSemesterActivity.class);
                 intent.putExtra("keyAccountId", clickedAccount.getId());
                 startActivity(intent);
+                finish();
             }
         });
 

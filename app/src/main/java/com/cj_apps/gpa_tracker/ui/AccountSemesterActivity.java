@@ -71,6 +71,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
                 intent.putExtra("keyAccountId", accountId);
                 intent.putExtra("keySemesterNo", String.valueOf(semester.getSemesterNo()));
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -79,6 +80,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AccountSemesterActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
