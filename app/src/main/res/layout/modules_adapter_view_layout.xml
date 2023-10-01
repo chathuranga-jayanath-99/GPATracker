@@ -6,30 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".ui.ModulesAdapterViewLayout"
     android:orientation="horizontal"
+    android:paddingVertical="10dp"
     >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="70sp"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:id="@+id/tvModuleName"
         android:text="Programming"
-        android:layout_weight="33.3"/>
+        android:layout_weight="70"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="15sp"
         android:layout_height="wrap_content"
         android:text="3"
         android:textSize="18dp"
         android:id="@+id/tvModuleCredits"
-        android:layout_weight="33.3"/>
+        android:layout_weight="15"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="15sp"
         android:layout_height="wrap_content"
         android:id="@+id/tvModuleResult"
         android:text="A+"
         android:textSize="18dp"
-        android:layout_weight="33.3"/>
+        android:layout_weight="15"/>
 
 </LinearLayout>

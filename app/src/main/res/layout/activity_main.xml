@@ -89,6 +89,7 @@
         android:id="@+id/lvAccountsIdList"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:divider="@null"
         android:layout_below="@id/tvSelectAccount" />
 
     <Button
