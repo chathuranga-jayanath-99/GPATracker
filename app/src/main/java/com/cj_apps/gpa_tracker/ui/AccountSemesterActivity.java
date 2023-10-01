@@ -15,6 +15,11 @@ import com.cj_apps.gpa_tracker.R;
 import com.cj_apps.gpa_tracker.control.GpaTracker;
 import com.cj_apps.gpa_tracker.control.PersistentGpaTracker;
 import com.cj_apps.gpa_tracker.data.model.Semester;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.List;
 
@@ -32,6 +37,17 @@ public class AccountSemesterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account_semester);
 
         String accountId = getIntent().getStringExtra("keyAccountId");
+
+        // load ads
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         // Initiate layout items
         tvCalculatedOverallGpa = findViewById(R.id.tvCalculatedOverallGpa);

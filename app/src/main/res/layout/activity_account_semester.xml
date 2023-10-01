@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="80dp"
     tools:context=".ui.AccountSemesterActivity">
 
     <RelativeLayout
@@ -43,10 +42,12 @@
         android:textStyle="bold" />
 
     <LinearLayout
+        android:id="@+id/llSemesters"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tvYourSemester"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
         <ListView
             android:id="@+id/lvSemesterList"
@@ -63,11 +64,18 @@
             android:id="@+id/btnGoBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Go Back" />
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_below="@+id/btnGoBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5496749643359468/1176141488">
+        </com.google.android.gms.ads.AdView>
     </LinearLayout>
-
-
-
 </RelativeLayout>
