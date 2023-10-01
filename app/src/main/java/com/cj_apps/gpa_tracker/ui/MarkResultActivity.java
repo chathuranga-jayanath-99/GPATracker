@@ -16,6 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cj_apps.gpa_tracker.R;
 import com.cj_apps.gpa_tracker.control.GpaTracker;
 import com.cj_apps.gpa_tracker.control.PersistentGpaTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MarkResultActivity extends AppCompatActivity {
     private GpaTracker gpaTracker;
@@ -32,6 +37,20 @@ public class MarkResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mark_result);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        AdView mAdViewTop = findViewById(R.id.adViewTop);
+        AdRequest adRequestTop = new AdRequest.Builder().build();
+        mAdViewTop.loadAd(adRequestTop);
+
+        AdView mAdViewBottom = findViewById(R.id.adViewBottom);
+        AdRequest adRequestBottom = new AdRequest.Builder().build();
+        mAdViewBottom.loadAd(adRequestBottom);
 
         int subjectId = Integer.parseInt(getIntent().getStringExtra("keySubjectId"));
         String subjectName = getIntent().getStringExtra("keySubjectName");
