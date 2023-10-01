@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="60dp"
     android:padding="10dp"
     tools:context=".ui.SemesterSubjectActivity">
 
@@ -114,7 +113,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/llModuleTableHeader"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
         <ListView
             android:id="@+id/lvSemModulesList"
@@ -130,10 +130,15 @@
             android:text="Go back"
             android:textSize="12dp"/>
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5496749643359468/9853294585">
+        </com.google.android.gms.ads.AdView>
     </LinearLayout>
-
-
-
-
-
 </RelativeLayout>

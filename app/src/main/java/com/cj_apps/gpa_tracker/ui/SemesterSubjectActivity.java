@@ -20,6 +20,11 @@ import com.cj_apps.gpa_tracker.control.GpaTracker;
 import com.cj_apps.gpa_tracker.control.PersistentGpaTracker;
 import com.cj_apps.gpa_tracker.data.model.Subject;
 import com.cj_apps.gpa_tracker.data.model.Validator;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.List;
 
@@ -41,6 +46,17 @@ public class SemesterSubjectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semester_subject);
+
+        // load ads
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         String accountId = getIntent().getStringExtra("keyAccountId");
         int semesterNo = Integer.parseInt(getIntent().getStringExtra("keySemesterNo"));
