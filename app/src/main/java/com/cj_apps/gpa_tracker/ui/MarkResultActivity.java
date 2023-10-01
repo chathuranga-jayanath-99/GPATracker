@@ -98,6 +98,7 @@ public class MarkResultActivity extends AppCompatActivity {
                     intent.putExtra("keyAccountId", accountId);
                     intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
                     startActivity(intent);
+                    finish();
                 }
                 else {
                     Toast.makeText(MarkResultActivity.this, "Enter a result!", Toast.LENGTH_SHORT).show();
@@ -113,6 +114,7 @@ public class MarkResultActivity extends AppCompatActivity {
                 intent.putExtra("keyAccountId", accountId);
                 intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
                 startActivity(intent);
+                finish();
             }
         });
 

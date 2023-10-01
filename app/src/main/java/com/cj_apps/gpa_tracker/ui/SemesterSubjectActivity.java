@@ -89,6 +89,7 @@ public class SemesterSubjectActivity extends AppCompatActivity {
                 intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
 
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -134,6 +135,7 @@ public class SemesterSubjectActivity extends AppCompatActivity {
                 intent.putExtra("keyAccountId", accountId);
                 intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
                 startActivity(intent);
+                finish();
             }
         });
 
