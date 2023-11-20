@@ -8,33 +8,25 @@
     tools:context=".ui.MainActivity">
 
     <EditText
-        android:id="@+id/etAccountId"
+        android:id="@+id/etProfileName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Account Number (Ex:1234)"
-        android:inputType="number"
-        android:textSize="18sp" />
-
-    <EditText
-        android:id="@+id/etHolderName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etAccountId"
-        android:hint="Holder's Name"
+        android:hint="Profile Name (Ex: John Silva)"
+        android:inputType="text"
         android:textSize="18sp" />
 
     <RadioGroup
         android:id="@+id/rgMaxGpa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etHolderName"
+        android:layout_below="@+id/etProfileName"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvMaxGpa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/etHolderName"
+            android:layout_below="@+id/etProfileName"
             android:text="Max GPA: "
             android:textSize="18sp" />
 
