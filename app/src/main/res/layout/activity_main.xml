@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/etNumberOfSemesters"
         android:layout_centerHorizontal="true"
-        android:text="Add Account" />
+        android:text="Add Profile" />
 
     <View
         android:id="@+id/divider"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btnAddAccount"
         android:layout_marginTop="16dp"
-        android:text="Select an Account"
+        android:text="Select a Profile"
         android:textStyle="bold"
         android:textSize="18sp" />
 

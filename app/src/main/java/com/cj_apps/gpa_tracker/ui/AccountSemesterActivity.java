@@ -36,7 +36,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_semester);
 
-        String accountId = getIntent().getStringExtra("keyAccountId");
+        int accountId = Integer.parseInt(getIntent().getStringExtra("keyAccountId"));
 
         // load ads
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -68,7 +68,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
                 Log.i("SEMESTER_LIST_VIEW", "Item clicked at position: "+i);
                 Semester semester = (Semester) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(AccountSemesterActivity.this, SemesterSubjectActivity.class);
-                intent.putExtra("keyAccountId", accountId);
+                intent.putExtra("keyAccountId", String.valueOf(accountId));
                 intent.putExtra("keySemesterNo", String.valueOf(semester.getSemesterNo()));
                 startActivity(intent);
                 finish();
@@ -85,7 +85,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
         });
     }
 
-    private void showSemesters(String accountId) {
+    private void showSemesters(int accountId) {
         List<Semester> semestersOfAccount = gpaTracker.getSemestersOfAccount(accountId);
 
         if (semestersOfAccount == null) Log.i("showSemesters", " empty array");

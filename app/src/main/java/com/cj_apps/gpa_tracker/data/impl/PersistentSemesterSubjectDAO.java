@@ -94,36 +94,37 @@ public class PersistentSemesterSubjectDAO implements SemesterSubjectDAO {
     }
 
     @Override
-    public boolean removeSemesterSubject(String accountId, int semesterNo, String subjectId) {
+    public boolean removeSemesterSubject(int accountId, int semesterNo, String subjectId) {
         SQLiteDatabase writableDatabase = this.databaseHelper.getWritableDatabase();
 
-        int delete = writableDatabase.delete(SEMESTER_SUBJECT_TABLE, "account_id=? and semester_no=? and subject_id=?", new String[]{accountId, String.valueOf(semesterNo), subjectId});
+        int delete = writableDatabase.delete(SEMESTER_SUBJECT_TABLE, "account_id=? and semester_no=? and subject_id=?",
+                new String[]{String.valueOf(accountId), String.valueOf(semesterNo), subjectId});
         if (delete == -1) return false;
         return true;
     }
 
     @Override
-    public boolean updateSemesterSubject(String accountId, int semesterNo, String subjectId, String result) {
+    public boolean updateSemesterSubject(int accountId, int semesterNo, String subjectId, String result) {
         SQLiteDatabase writableDatabase = this.databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         Log.i("debug", "updateSemesterSubject");
         contentValues.put(RESULT_COLUMN, result);
 
-        int update = writableDatabase.update(SEMESTER_SUBJECT_TABLE, contentValues, "account_id=? and semester_no=? and subject_id=?", new String[]{accountId, String.valueOf(semesterNo), subjectId});
+        int update = writableDatabase.update(SEMESTER_SUBJECT_TABLE, contentValues, "account_id=? and semester_no=? and subject_id=?",
+                new String[]{String.valueOf(accountId), String.valueOf(semesterNo), subjectId});
         if (update == -1) return false;
         return true;
 
     }
 
     @Override
-    public Semester getSemesterWithSubjects(String accountId, int semesterNo) {
+    public Semester getSemesterWithSubjects(int accountId, int semesterNo) {
         SQLiteDatabase readableDatabase = this.databaseHelper.getReadableDatabase();
-
         Cursor cursor = readableDatabase.rawQuery(
                 "select s.id as subject_id, s.name, s.credits, ss.result from semester_subject_table ss " +
                         "join subject_table s on ss.subject_id=s.id " +
                         "where account_id=? and semester_no=?",
-                new String[]{accountId, String.valueOf(semesterNo)}
+                new String[]{String.valueOf(accountId), String.valueOf(semesterNo)}
         );
 
         Semester semester = new Semester(accountId, semesterNo);
@@ -148,7 +149,7 @@ public class PersistentSemesterSubjectDAO implements SemesterSubjectDAO {
     }
 
     private SemesterSubject getOneSemesterSubjectFromCursor(Cursor cursor) {
-        String accountId = cursor.getString(cursor.getColumnIndexOrThrow(ACCOUNT_ID_COLUMN));
+        int accountId = cursor.getInt(cursor.getColumnIndexOrThrow(ACCOUNT_ID_COLUMN));
         int semesterNo = cursor.getInt(cursor.getColumnIndexOrThrow(SEMESTER_NO_COLUMN));
         int subjectId = cursor.getInt(cursor.getColumnIndexOrThrow(SUBJECT_ID_COLUMN));
         String result = cursor.getString(cursor.getColumnIndexOrThrow(RESULT_COLUMN));

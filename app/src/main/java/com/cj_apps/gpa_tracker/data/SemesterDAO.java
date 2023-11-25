@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface SemesterDAO {
 
-    List<Semester> getSemestersOfAccount(String accountId);
+    List<Semester> getSemestersOfAccount(int accountId);
 
-    Semester getSemester(String accountId, int semesterNo);
+    Semester getSemester(int accountId, int semesterNo);
 
     boolean addSemester(Semester semester);
 
-    boolean removeSemester(String accountId, int semesterNo);
+    boolean removeSemester(int accountId, int semesterNo);
 }

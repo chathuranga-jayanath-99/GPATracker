@@ -40,7 +40,7 @@ public class Validator {
     }
 
     public boolean validateSemester(Semester semester){
-        if (semester.getAccountId().equals("")) {
+        if (semester.getAccountId().equals(-1)) {
             return false;
         }
         else if (semester.getSemesterNo()<=0) {
@@ -52,10 +52,7 @@ public class Validator {
     }
 
     public boolean validateAccount(Account account) {
-        if (account.getId().equals("")){
-            return false;
-        }
-        else if (account.getName().equals("")){
+        if (account.getName().equals("")){
             return false;
         }
         else if (!this.gpaList.contains(account.getMaxGpa())){

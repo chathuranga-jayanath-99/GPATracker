@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersistentAccountDAO implements AccountDAO {
-
     public static final String ACCOUNT_TABLE = "account_table";
     public static final String ID_COLUMN = "id";
     public static final String NAME_COLUMN = "name";
@@ -22,7 +21,7 @@ public class PersistentAccountDAO implements AccountDAO {
     public static final String NO_OF_SEMESTERS_COLUMN = "no_of_semesters";
 
     public static final String  CREATE_TABLE_QUERY = "create table " + ACCOUNT_TABLE + " (" +
-            ID_COLUMN + " text primary key, " +
+            ID_COLUMN + " integer primary key autoincrement, " +
             NAME_COLUMN + " text not null, " +
             MAX_GPA_COLUMN + " real not null, " +
             NO_OF_SEMESTERS_COLUMN + " integer not null);";
@@ -64,7 +63,7 @@ public class PersistentAccountDAO implements AccountDAO {
 
         if (cursor.moveToFirst()) {
          do {
-             String id = cursor.getString(cursor.getColumnIndexOrThrow(ID_COLUMN));
+             int id = cursor.getInt(cursor.getColumnIndexOrThrow(ID_COLUMN));
              String name = cursor.getString(cursor.getColumnIndexOrThrow(NAME_COLUMN));
              float maxGpa = cursor.getFloat(cursor.getColumnIndexOrThrow(MAX_GPA_COLUMN));
              int noOfSemesters = cursor.getInt(cursor.getColumnIndexOrThrow(NO_OF_SEMESTERS_COLUMN));
@@ -81,16 +80,16 @@ public class PersistentAccountDAO implements AccountDAO {
     }
 
     @Override
-    public Account getAccount(String accountId) {
+    public Account getAccount(int accountId) {
         Account account = null;
 
         String queryString = "select * from account_table where id=?";
 
         SQLiteDatabase readableDatabase = this.databaseHelper.getReadableDatabase();
-        Cursor cursor = readableDatabase.rawQuery(queryString, new String[]{accountId});
+        Cursor cursor = readableDatabase.rawQuery(queryString, new String[]{String.valueOf(accountId)});
 
         if (cursor.moveToFirst()) {
-            String accountIdSel = cursor.getString(cursor.getColumnIndexOrThrow(ID_COLUMN));
+            Integer accountIdSel = cursor.getInt(cursor.getColumnIndexOrThrow(ID_COLUMN));
             String name = cursor.getString(cursor.getColumnIndexOrThrow(NAME_COLUMN));
             float maxGpa = (float)cursor.getDouble(cursor.getColumnIndexOrThrow(MAX_GPA_COLUMN));
             int noOfSemesters = cursor.getInt(cursor.getColumnIndexOrThrow(NO_OF_SEMESTERS_COLUMN));
@@ -105,12 +104,24 @@ public class PersistentAccountDAO implements AccountDAO {
         return account;
     }
 
+    public int getLastAccountId() {
+        String queryString = "select * from account_table order by id desc limit 1";
+        SQLiteDatabase readableDatabase = this.databaseHelper.getReadableDatabase();
+        Cursor cursor = readableDatabase.rawQuery(queryString, new String[]{});
+
+        if (cursor.moveToFirst()) {
+            String accountIdSel = cursor.getString(cursor.getColumnIndexOrThrow(ID_COLUMN));
+            return Integer.parseInt(accountIdSel);
+        } else {
+            return -1;
+        }
+    }
+
     @Override
     public boolean addAccount(Account account) {
         SQLiteDatabase writableDatabase = this.databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(ID_COLUMN, account.getId());
         contentValues.put(NAME_COLUMN, account.getName());
         contentValues.put(MAX_GPA_COLUMN, account.getMaxGpa());
         contentValues.put(NO_OF_SEMESTERS_COLUMN, account.getNoOfSemesters());
@@ -121,13 +132,13 @@ public class PersistentAccountDAO implements AccountDAO {
     }
 
     @Override
-    public boolean removeAccount(String accountId) {
+    public boolean removeAccount(Integer accountId) {
         SQLiteDatabase writableDatabase = this.databaseHelper.getWritableDatabase();
 
         Cursor cursor = writableDatabase.rawQuery(
                 "delete from account_table " +
                         "where id=?",
-                new String[]{accountId}
+                new String[]{String.valueOf(accountId)}
         );
 
         if (cursor.moveToFirst()) return true;

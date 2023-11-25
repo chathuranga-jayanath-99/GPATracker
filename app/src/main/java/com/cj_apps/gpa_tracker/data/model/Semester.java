@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Semester {
-    private String accountId;
+    private int accountId;
     private int semesterNo;
     private String title;
 
     private List<Subject> subjectList;
 
-    public Semester(String accountId, int semesterNo) {
+    public Semester(int accountId, int semesterNo) {
         this.accountId = accountId;
         this.semesterNo = semesterNo;
         this.title = "Sem "+semesterNo;
@@ -22,7 +22,7 @@ public class Semester {
         return title;
     }
 
-    public String getAccountId() {
+    public Integer getAccountId() {
         return accountId;
     }
 

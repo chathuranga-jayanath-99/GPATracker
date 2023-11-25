@@ -13,9 +13,9 @@ public interface SemesterSubjectDAO {
 
     boolean addSemesterSubject(SemesterSubject semesterSubject);
 
-    boolean removeSemesterSubject(String accountId, int semesterNo, String subjectId);
+    boolean removeSemesterSubject(int accountId, int semesterNo, String subjectId);
 
-    boolean updateSemesterSubject(String accountId, int semesterNo, String subjectId, String result);
+    boolean updateSemesterSubject(int accountId, int semesterNo, String subjectId, String result);
 
-    Semester getSemesterWithSubjects(String accountId, int semesterNo);
+    Semester getSemesterWithSubjects(int accountId, int semesterNo);
 }
