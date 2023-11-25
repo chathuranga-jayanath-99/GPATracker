@@ -19,8 +19,8 @@ public class AccountTest {
 
     @Test
     public void getSemesterGpa() {
-        Account account = new Account("1111", "1111", 4.2f, 8);
-        Semester semester = new Semester("1111", 7);
+        Account account = new Account(1111, "1111", 4.2f, 8);
+        Semester semester = new Semester(1111, 7);
 
         // max gpa
         float maxGpa = 4.2f;

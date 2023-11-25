@@ -3,7 +3,7 @@ package com.cj_apps.gpa_tracker.data.model;
 import com.cj_apps.gpa_tracker.Utils;
 
 public class Account {
-    private String id;
+    private int id;
     private String name;
     private float maxGpa;
     private int noOfSemesters;
@@ -11,7 +11,7 @@ public class Account {
     private Semester[] semesters;
     private float overallGpa;
 
-    public Account(String id, String name, float maxGpa, int noOfSemesters) {
+    public Account(int id, String name, float maxGpa, int noOfSemesters) {
         this.id = id;
         this.name = name;
         this.maxGpa = maxGpa;
@@ -20,6 +20,16 @@ public class Account {
         if (noOfSemesters > 0){
             semesters = new Semester[noOfSemesters];
         }
+    }
+
+    public Account(String name, float maxGpa, int noOfSemesters) {
+        this.name = name;
+        this.maxGpa = maxGpa;
+        this.noOfSemesters = noOfSemesters;
+    }
+
+    public static void findNextAccountNumber() {
+        
     }
 
     public float getOverallGpa() {
@@ -118,8 +128,12 @@ public class Account {
         this.noOfSemesters = noOfSemesters;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -132,6 +146,15 @@ public class Account {
 
     public float getMaxGpa() {
         return maxGpa;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", maxGpa=" + maxGpa +
+                '}';
     }
 
     public void setMaxGpa(float maxGpa) {

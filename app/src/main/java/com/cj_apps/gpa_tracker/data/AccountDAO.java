@@ -10,10 +10,11 @@ public interface AccountDAO {
 
     public List<Account> getAccountsList();
 
-    public Account getAccount(String accountId);
+    public Account getAccount(int accountId);
 
     public boolean addAccount(Account account);
 
-    public boolean removeAccount(String accountId);
+    public boolean removeAccount(Integer accountId);
 
+    public int getLastAccountId();
 }

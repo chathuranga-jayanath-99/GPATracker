@@ -22,7 +22,7 @@ public abstract class GpaTracker {
 
     private Validator validator;
 
-    public float getOverallGpaOfAccount(String accountId) {
+    public float getOverallGpaOfAccount(int accountId) {
         Account account = accountDAO.getAccount(accountId);
         for (int i = 0; i < account.getNoOfSemesters(); i++) {
             Semester semester = semesterSubjectDAO.getSemesterWithSubjects(accountId, i + 1);
@@ -31,7 +31,7 @@ public abstract class GpaTracker {
         return account.getOverallGpa();
     }
 
-    public float getSemesterGpaOfAccount(String accountId, int semesterNo) {
+    public float getSemesterGpaOfAccount(int accountId, int semesterNo) {
         Account account = accountDAO.getAccount(accountId);
         Semester semester = semesterSubjectDAO.getSemesterWithSubjects(accountId, semesterNo);
         return account.getSemesterGpa(semester);
@@ -45,16 +45,21 @@ public abstract class GpaTracker {
         return accountDAO.getAccountsList();
     }
 
-    public void addAccount(String id, String name, float maxGpa, int noOfSemesters) {
-        Account account = new Account(id, name, maxGpa, noOfSemesters);
-
+    public void addAccount(String profileName, float maxGpa, int noOfSemesters) {
+        Account account = new Account(profileName, maxGpa, noOfSemesters);
         if (this.validator.validateAccount(account)) {
             accountDAO.addAccount(account);
+            Integer lastAccountId = accountDAO.getLastAccountId();
+            if (lastAccountId == null) {
 
-            for (int i = 0; i < account.getNoOfSemesters(); i++) {
-                Semester semester = new Semester(account.getId(), i + 1);
-                semesterDAO.addSemester(semester);
-                Log.i("addAccount", "semester added" + String.valueOf(i + 1));
+            } else {
+                account.setId(accountDAO.getLastAccountId());
+                Log.i("addAccount", "account adding " + account.toString());
+                for (int i = 0; i < account.getNoOfSemesters(); i++) {
+                    Semester semester = new Semester(account.getId(), i + 1);
+                    semesterDAO.addSemester(semester);
+                    Log.i("addAccount", "semester added: " + String.valueOf(i + 1));
+                }
             }
         }
         else {
@@ -63,15 +68,15 @@ public abstract class GpaTracker {
 
     }
 
-    public void deleteAccount(String accountId) {
+    public void deleteAccount(int accountId) {
         accountDAO.removeAccount(accountId);
     }
 
-    public List<Semester> getSemestersOfAccount(String accountId) {
+    public List<Semester> getSemestersOfAccount(int accountId) {
         return semesterDAO.getSemestersOfAccount(accountId);
     }
 
-    public int addSubject(String name, float credits, String accountId, int semesterNo) {
+    public int addSubject(String name, float credits, int accountId, int semesterNo) {
         Subject subject = new Subject(name, credits);
         int subId = subjectDAO.addSubject(subject);
 
@@ -90,17 +95,17 @@ public abstract class GpaTracker {
         return subId;
     }
 
-    public void markSubjectResult(String accountId, int semesterNo, int subjectId, String result) {
+    public void markSubjectResult(int accountId, int semesterNo, int subjectId, String result) {
         semesterSubjectDAO.updateSemesterSubject(accountId, semesterNo, String.valueOf(subjectId), result);
     }
 
-    public List<Subject> getAccountSemesterSubjects(String accountId, int semesterNo) {
+    public List<Subject> getAccountSemesterSubjects(int accountId, int semesterNo) {
         Semester semesterWithSubjects = semesterSubjectDAO.getSemesterWithSubjects(accountId, semesterNo);
         return semesterWithSubjects.getSubjectList();
     }
 
 
-    public boolean addSemesterSubject(String accountId, int semesterNo, int subjectId, String result) {
+    public boolean addSemesterSubject(int accountId, int semesterNo, int subjectId, String result) {
         SemesterSubject semesterSubject = new SemesterSubject(accountId, semesterNo, subjectId, result);
         return semesterSubjectDAO.addSemesterSubject(semesterSubject);
     }

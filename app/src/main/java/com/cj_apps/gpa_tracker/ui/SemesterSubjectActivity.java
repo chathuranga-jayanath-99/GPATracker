@@ -58,7 +58,7 @@ public class SemesterSubjectActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        String accountId = getIntent().getStringExtra("keyAccountId");
+        int accountId = Integer.parseInt(getIntent().getStringExtra("keyAccountId"));
         int semesterNo = Integer.parseInt(getIntent().getStringExtra("keySemesterNo"));
 
         initiateLayoutItems();
@@ -79,15 +79,13 @@ public class SemesterSubjectActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Subject subject = (Subject) adapterView.getItemAtPosition(i);
                 Log.i("debug", subject.toString());
-
                 Intent intent = new Intent(SemesterSubjectActivity.this, MarkResultActivity.class);
                 intent.putExtra("keySubjectId", String.valueOf(subject.getId()));
                 intent.putExtra("keySubjectName", subject.getName());
                 intent.putExtra("keySubjectCredits", String.valueOf(subject.getCredits()));
                 intent.putExtra("keySubjectResult", subject.getResult());
-                intent.putExtra("keyAccountId", accountId);
+                intent.putExtra("keyAccountId", String.valueOf(accountId));
                 intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
-
                 startActivity(intent);
                 finish();
             }
@@ -111,7 +109,6 @@ public class SemesterSubjectActivity extends AppCompatActivity {
                 if (Validator.validateSubjectDetails(etAddModuleName.getText().toString(), etAddModuleCredits.getText().toString())){
                     String addModuleName = etAddModuleName.getText().toString();
                     float addModuleCredits = Float.parseFloat(etAddModuleCredits.getText().toString());
-
                     int newSubjectId = gpaTracker.addSubject(addModuleName, addModuleCredits, accountId, semesterNo);
                     if (!selectedResult.equals("--") && newSubjectId >= 0){
                         gpaTracker.markSubjectResult(accountId, semesterNo, newSubjectId, selectedResult);
@@ -132,7 +129,7 @@ public class SemesterSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SemesterSubjectActivity.this, AccountSemesterActivity.class);
-                intent.putExtra("keyAccountId", accountId);
+                intent.putExtra("keyAccountId", String.valueOf(accountId));
                 intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
                 startActivity(intent);
                 finish();
@@ -158,7 +155,7 @@ public class SemesterSubjectActivity extends AppCompatActivity {
         lvSemModulesList = findViewById(R.id.lvSemModulesList);
     }
 
-    private void showSemesterModules(String accountId, int semesterNo) {
+    private void showSemesterModules(int accountId, int semesterNo) {
         List<Subject> accountSemesterSubjects = gpaTracker.getAccountSemesterSubjects(accountId, semesterNo);
         SubjectListAdapter subjectListAdapter = new SubjectListAdapter(SemesterSubjectActivity.this, R.layout.modules_adapter_view_layout, accountSemesterSubjects);
         lvSemModulesList.setAdapter(subjectListAdapter);

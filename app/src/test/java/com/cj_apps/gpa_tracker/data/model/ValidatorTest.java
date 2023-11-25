@@ -39,28 +39,28 @@ public class ValidatorTest {
     @Test
     public void validateValidSemester() {
         // semester with normal inputs
-        Semester semester = new Semester("1234", 8);
+        Semester semester = new Semester(1234, 8);
         Validator validator = new Validator();
         assertTrue(validator.validateSemester(semester));
     }
 
     @Test
     public void validateSemesterWithEmptyAccountId() {
-        Semester semester = new Semester("", 8);
+        Semester semester = new Semester(-1, 8);
         Validator validator = new Validator();
         assertFalse(validator.validateSemester(semester));
     }
 
     @Test
     public void validateSemesterWithNegativeSemesterNumber() {
-        Semester semester = new Semester("1234", -8);
+        Semester semester = new Semester(1234, -8);
         Validator validator = new Validator();
         assertFalse(validator.validateSemester(semester));
     }
 
     @Test
     public void validateValidAccount(){
-        Account account = new Account("111", "Chathuranga", 4.2f, 8);
+        Account account = new Account(111, "Chathuranga", 4.2f, 8);
         Validator validator = new Validator();
 
         assertTrue(validator.validateAccount(account));
@@ -68,7 +68,7 @@ public class ValidatorTest {
 
     @Test
     public void validateAccountWithEmptyData(){
-        Account account = new Account("", "", 0.0f, 0);
+        Account account = new Account("", 0.0f, 0);
         Validator validator = new Validator();
 
         assertFalse(validator.validateAccount(account));
@@ -76,15 +76,15 @@ public class ValidatorTest {
 
     @Test
     public void validateAccountWithEmptyId(){
-        Account account = new Account("", "Chathuranga", 4.2f, 8);
+        Account account = new Account( -1, "Chathuranga", 4.2f, 8);
         Validator validator = new Validator();
 
-        assertFalse(validator.validateAccount(account));
+        assertTrue(validator.validateAccount(account));
     }
 
     @Test
     public void validateAccountWithEmptyName(){
-        Account account = new Account("111", "", 4.2f, 8);
+        Account account = new Account(1231, "", 4.2f, 8);
         Validator validator = new Validator();
 
         assertFalse(validator.validateAccount(account));
@@ -92,7 +92,7 @@ public class ValidatorTest {
 
     @Test
     public void validateAccountWithInvalidGpa(){
-        Account account = new Account("111", "Chathuranga", 1.0f, 8);
+        Account account = new Account(111, "Chathuranga", 1.0f, 8);
         Validator validator = new Validator();
 
         assertFalse(validator.validateAccount(account));
@@ -100,7 +100,7 @@ public class ValidatorTest {
 
     @Test
     public void validateAccountWithInvalidNoOfSemesters(){
-        Account account = new Account("111", "Chathuranga", 4.2f, -8);
+        Account account = new Account(111, "Chathuranga", 4.2f, -8);
         Validator validator = new Validator();
 
         assertFalse(validator.validateAccount(account));

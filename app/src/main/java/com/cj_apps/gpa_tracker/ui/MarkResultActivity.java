@@ -56,7 +56,7 @@ public class MarkResultActivity extends AppCompatActivity {
         String subjectName = getIntent().getStringExtra("keySubjectName");
         float subjectCredits = Float.parseFloat(getIntent().getStringExtra("keySubjectCredits"));
         String subjectResult = getIntent().getStringExtra("keySubjectResult");
-        String accountId = getIntent().getStringExtra("keyAccountId");
+        int accountId = Integer.parseInt(getIntent().getStringExtra("keyAccountId"));
         int semesterNo = Integer.parseInt(getIntent().getStringExtra("keySemesterNo"));
 
         initiateLayoutItems();
@@ -89,13 +89,10 @@ public class MarkResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String result = getSelectedResult();
-
                 if (!result.equals("")) {
-
                     gpaTracker.markSubjectResult(accountId, semesterNo,subjectId, result);
-
                     Intent intent = new Intent(MarkResultActivity.this, SemesterSubjectActivity.class);
-                    intent.putExtra("keyAccountId", accountId);
+                    intent.putExtra("keyAccountId", String.valueOf(accountId));
                     intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
                     startActivity(intent);
                     finish();
@@ -111,7 +108,7 @@ public class MarkResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MarkResultActivity.this, SemesterSubjectActivity.class);
-                intent.putExtra("keyAccountId", accountId);
+                intent.putExtra("keyAccountId", String.valueOf(accountId));
                 intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
                 startActivity(intent);
                 finish();

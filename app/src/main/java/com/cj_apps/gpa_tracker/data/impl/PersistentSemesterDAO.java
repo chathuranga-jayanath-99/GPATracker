@@ -35,14 +35,14 @@ public class PersistentSemesterDAO implements SemesterDAO {
     }
 
     @Override
-    public List<Semester> getSemestersOfAccount(String accountId) {
+    public List<Semester> getSemestersOfAccount(int accountId) {
         ArrayList<Semester> returnList = new ArrayList<>();
 
         SQLiteDatabase readableDatabase = this.databaseHelper.getReadableDatabase();
         Cursor cursor = readableDatabase.rawQuery(
                 "select * from semester_table " +
                         "where account_id=?",
-                new String[]{accountId}
+                new String[]{String.valueOf(accountId)}
         );
 
         if (cursor.moveToFirst()) {
@@ -60,14 +60,14 @@ public class PersistentSemesterDAO implements SemesterDAO {
     }
 
     @Override
-    public Semester getSemester(String accountId, int semesterNo) {
+    public Semester getSemester(int accountId, int semesterNo) {
         Semester semester = null;
 
         SQLiteDatabase readableDatabase = this.databaseHelper.getReadableDatabase();
         Cursor cursor = readableDatabase.rawQuery(
                 "select * from " + SEMESTER_TABLE + " " +
                         "where " + ACCOUNT_ID_COLUMN + "=? and " + SEMESTER_NO_COLUMN + "=?",
-                new String[]{accountId, String.valueOf(semesterNo)}
+                new String[]{String.valueOf(accountId), String.valueOf(semesterNo)}
         );
 
         if (cursor.moveToFirst()) {
@@ -95,16 +95,16 @@ public class PersistentSemesterDAO implements SemesterDAO {
     }
 
     @Override
-    public boolean removeSemester(String accountId, int semesterNo) {
+    public boolean removeSemester(int accountId, int semesterNo) {
         SQLiteDatabase writableDatabase = this.databaseHelper.getWritableDatabase();
 
-        int delete = writableDatabase.delete(SEMESTER_TABLE, "account_id=? and semester_no=?", new String[]{accountId, String.valueOf(semesterNo)});
+        int delete = writableDatabase.delete(SEMESTER_TABLE, "account_id=? and semester_no=?", new String[]{String.valueOf(accountId), String.valueOf(semesterNo)});
         if (delete == -1) return false;
         return true;
     }
 
     private Semester getSemesterFromCursor(Cursor cursor) {
-        String accountIdSel = cursor.getString(cursor.getColumnIndexOrThrow(ACCOUNT_ID_COLUMN));
+        Integer accountIdSel = cursor.getInt(cursor.getColumnIndexOrThrow(ACCOUNT_ID_COLUMN));
         int semesterNo = cursor.getInt(cursor.getColumnIndexOrThrow(SEMESTER_NO_COLUMN));
 
         return new Semester(accountIdSel, semesterNo);

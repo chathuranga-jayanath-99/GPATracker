@@ -31,8 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private GpaTracker gpaTracker;
 
-    private EditText etAccountId;
-    private EditText etHolderName;
+    private EditText etProfileName;
     private RadioGroup rgMaxGpa;
     private EditText etNumberOfSemesters;
     private Button btnAddAccount;
@@ -64,9 +63,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // inputs shouldn't be empty
-                if (!etAccountId.getText().toString().equals("") && !etHolderName.getText().toString().equals("") && !etNumberOfSemesters.getText().toString().equals("")) {
-                    String id = etAccountId.getText().toString();
-                    String name = etHolderName.getText().toString();
+                if (!etProfileName.getText().toString().equals("") && !etNumberOfSemesters.getText().toString().equals("")) {
+                    String profileName = etProfileName.getText().toString();
                     int noOfSemesters = Integer.parseInt(etNumberOfSemesters.getText().toString());
                     float maxGpa;
 
@@ -82,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                             maxGpa=4.0f;
                             break;
                     }
-                    gpaTracker.addAccount(id, name, maxGpa, noOfSemesters);
+                    gpaTracker.addAccount(profileName, maxGpa, noOfSemesters);
                 }
                 else {
                     Log.i("invalid-input", "inputs are empty");
@@ -106,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Account clickedAccount = (Account) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(MainActivity.this, AccountSemesterActivity.class);
-                intent.putExtra("keyAccountId", clickedAccount.getId());
+                Log.i("keyAccountId", clickedAccount.toString());
+                intent.putExtra("keyAccountId", String.valueOf(clickedAccount.getId()));
                 startActivity(intent);
                 finish();
             }
@@ -139,15 +138,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clearInputFields() {
-        etAccountId.setText("");
-        etHolderName.setText("");
+        etProfileName.setText("");
         etNumberOfSemesters.setText("");
         rgMaxGpa.clearCheck();
     }
 
     private void initiateLayoutItems() {
-        etAccountId = findViewById(R.id.etAccountId);
-        etHolderName = findViewById(R.id.etHolderName);
+        etProfileName = findViewById(R.id.etProfileName);
         rgMaxGpa = findViewById(R.id.rgMaxGpa);
         etNumberOfSemesters = findViewById(R.id.etNumberOfSemesters);
         btnAddAccount = findViewById(R.id.btnAddAccount);

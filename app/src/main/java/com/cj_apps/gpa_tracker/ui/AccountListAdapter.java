@@ -31,14 +31,11 @@ public class AccountListAdapter extends ArrayAdapter<Account> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        Account account = getItem(position);
-        String accountId = getItem(position).getId();
+        int accountId = getItem(position).getId();
         String accountName = getItem(position).getName();
 
         convertView = LayoutInflater.from(context).inflate(resource, parent, false);
-        TextView tvAccountId = (TextView) convertView.findViewById(R.id.tvAccountId);
         TextView tvAccountName = (TextView) convertView.findViewById(R.id.tvAccountName);
-        tvAccountId.setText(accountId);
         tvAccountName.setText(accountName);
         return convertView;
     }
