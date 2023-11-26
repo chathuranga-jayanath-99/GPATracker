@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("keyAccountId", clickedAccount.toString());
                 intent.putExtra("keyAccountId", String.valueOf(clickedAccount.getId()));
                 startActivity(intent);
-                finish();
             }
         });
 

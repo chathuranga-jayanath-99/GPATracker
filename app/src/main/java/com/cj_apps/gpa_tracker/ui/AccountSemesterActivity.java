@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,10 +23,8 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import java.util.List;
 
 public class AccountSemesterActivity extends AppCompatActivity {
-
     private TextView tvCalculatedOverallGpa;
     private ListView lvSemesterList;
-    private Button btnGoBack;
 
     private GpaTracker gpaTracker;
 
@@ -35,9 +32,7 @@ public class AccountSemesterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_semester);
-
         int accountId = Integer.parseInt(getIntent().getStringExtra("keyAccountId"));
-
         // load ads
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -52,14 +47,11 @@ public class AccountSemesterActivity extends AppCompatActivity {
         // Initiate layout items
         tvCalculatedOverallGpa = findViewById(R.id.tvCalculatedOverallGpa);
         lvSemesterList = findViewById(R.id.lvSemesterList);
-        btnGoBack = findViewById(R.id.btnGoBack);
 
         this.gpaTracker = new PersistentGpaTracker(this);
-
         float overallGpaOfAccount = gpaTracker.getOverallGpaOfAccount(accountId);
         tvCalculatedOverallGpa.setText(String.valueOf(overallGpaOfAccount));
         Log.i("overallGpaOfAccount", String.valueOf(overallGpaOfAccount));
-
         showSemesters(accountId);
 
         lvSemesterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -71,16 +63,6 @@ public class AccountSemesterActivity extends AppCompatActivity {
                 intent.putExtra("keyAccountId", String.valueOf(accountId));
                 intent.putExtra("keySemesterNo", String.valueOf(semester.getSemesterNo()));
                 startActivity(intent);
-                finish();
-            }
-        });
-
-        btnGoBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AccountSemesterActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
     }
