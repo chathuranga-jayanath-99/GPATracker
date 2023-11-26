@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -116,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
                 Account clickedAccount = (Account) adapterView.getItemAtPosition(i);
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setTitle("Confirmation");
-                builder.setMessage("Are you sure you want to delete account: " + clickedAccount.getName() + "-" + clickedAccount.getId() + "?");
+                String message = "Are you sure you want to delete profile: <b>" + clickedAccount.getName() + "</b> ?";
+                builder.setMessage(Html.fromHtml(message));
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
