@@ -60,6 +60,11 @@ public class PersistentSemesterDAO implements SemesterDAO {
     }
 
     @Override
+    public float getSemesterGpa(int accountId, int semesterNo) {
+        return 0;
+    }
+
+    @Override
     public Semester getSemester(int accountId, int semesterNo) {
         Semester semester = null;
 

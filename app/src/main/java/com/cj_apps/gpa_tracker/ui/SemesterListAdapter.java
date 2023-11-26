@@ -41,8 +41,12 @@ public class SemesterListAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.activity_semester_list_view, null);
-        TextView textView = (TextView) view.findViewById(R.id.tvSem);
-        textView.setText(semesterList.get(i).toString());
+        TextView textSemNo = (TextView) view.findViewById(R.id.tvSemNo);
+        TextView textSemGpa = (TextView) view.findViewById(R.id.tvSemGpa);
+        int actualSemNo = semesterList.get(i).getSemesterNo();
+        float actualSemGpa = semesterList.get(i).getGPA();
+        textSemNo.setText("Semester: " + String.valueOf(actualSemNo));
+        textSemGpa.setText(String.valueOf(actualSemGpa));
         return view;
     }
 

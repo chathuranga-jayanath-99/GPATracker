@@ -25,8 +25,8 @@ import java.util.List;
 public class AccountSemesterActivity extends AppCompatActivity {
     private TextView tvCalculatedOverallGpa;
     private ListView lvSemesterList;
-
     private GpaTracker gpaTracker;
+    private List<Semester> semestersOfAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,10 @@ public class AccountSemesterActivity extends AppCompatActivity {
         float overallGpaOfAccount = gpaTracker.getOverallGpaOfAccount(accountId);
         tvCalculatedOverallGpa.setText(String.valueOf(overallGpaOfAccount));
         Log.i("overallGpaOfAccount", String.valueOf(overallGpaOfAccount));
+
+        // set semesters
+        semestersOfAccount = gpaTracker.getSemestersOfAccount(accountId);
+        calculateSemesterGPAs(accountId);
         showSemesters(accountId);
 
         lvSemesterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -67,9 +71,14 @@ public class AccountSemesterActivity extends AppCompatActivity {
         });
     }
 
-    private void showSemesters(int accountId) {
-        List<Semester> semestersOfAccount = gpaTracker.getSemestersOfAccount(accountId);
+    private void calculateSemesterGPAs(int accountId) {
+        for (Semester semester : semestersOfAccount) {
+            float semesterGpa = gpaTracker.getSemesterGpaOfAccount(accountId, semester.getSemesterNo());
+            semester.setGPA(semesterGpa);
+        }
+    }
 
+    private void showSemesters(int accountId) {
         if (semestersOfAccount == null) Log.i("showSemesters", " empty array");
         else Log.i("showSemesters", " not empty array" + semestersOfAccount.size());
 

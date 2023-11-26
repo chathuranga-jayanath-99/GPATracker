@@ -9,10 +9,20 @@
     tools:context=".ui.SemesterListView">
 
     <TextView
-        android:id="@+id/tvSem"
+        android:id="@+id/tvSemNo"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:gravity="center"
         android:text="My Semester"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:layout_weight="33"/>
+
+    <TextView
+        android:id="@+id/tvSemGpa"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="3.88"
+        android:textSize="20dp"
+        android:layout_weight="66"/>
 </LinearLayout>

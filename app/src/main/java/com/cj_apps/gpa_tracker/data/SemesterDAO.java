@@ -5,6 +5,7 @@ import com.cj_apps.gpa_tracker.data.model.Semester;
 import java.util.List;
 
 public interface SemesterDAO {
+    float getSemesterGpa(int accountId, int semesterNo);
 
     List<Semester> getSemestersOfAccount(int accountId);
 
