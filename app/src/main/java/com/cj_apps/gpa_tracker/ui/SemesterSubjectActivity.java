@@ -2,8 +2,11 @@ package com.cj_apps.gpa_tracker.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -86,6 +89,33 @@ public class SemesterSubjectActivity extends AppCompatActivity {
                 intent.putExtra("keyAccountId", String.valueOf(accountId));
                 intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
                 startActivity(intent);
+            }
+        });
+
+        lvSemModulesList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Subject clickedSubject = (Subject) adapterView.getItemAtPosition(i);
+                Log.i("debug", clickedSubject.toString());
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Confirmation");
+                String message = "Are you sure you want to delete subject: <b>" + clickedSubject.getName() + "</b> ?";
+                builder.setMessage(Html.fromHtml(message));
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        gpaTracker.deleteSemesterSubject(accountId, semesterNo, clickedSubject.getId());
+                        showSemesterModules(accountId, semesterNo);
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // just close the window
+                    }
+                });
+                builder.show();
+                return true;
             }
         });
 

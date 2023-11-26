@@ -13,7 +13,7 @@ public interface SemesterSubjectDAO {
 
     boolean addSemesterSubject(SemesterSubject semesterSubject);
 
-    boolean removeSemesterSubject(int accountId, int semesterNo, String subjectId);
+    boolean removeSemesterSubject(int accountId, int semesterNo, int subjectId);
 
     boolean updateSemesterSubject(int accountId, int semesterNo, String subjectId, String result);
 
