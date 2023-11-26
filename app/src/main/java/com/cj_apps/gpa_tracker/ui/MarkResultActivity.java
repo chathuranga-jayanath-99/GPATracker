@@ -28,7 +28,6 @@ public class MarkResultActivity extends AppCompatActivity {
     private TextView tvModuleName;
     private TextView tvModuleCredits;
     private Button btnMarkResult;
-    private Button btnCancel;
     private String selectedResult;
 
     private Spinner spinnerResults;
@@ -94,6 +93,7 @@ public class MarkResultActivity extends AppCompatActivity {
                     Intent intent = new Intent(MarkResultActivity.this, SemesterSubjectActivity.class);
                     intent.putExtra("keyAccountId", String.valueOf(accountId));
                     intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
                 }
@@ -103,18 +103,6 @@ public class MarkResultActivity extends AppCompatActivity {
                 }
             }
         });
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MarkResultActivity.this, SemesterSubjectActivity.class);
-                intent.putExtra("keyAccountId", String.valueOf(accountId));
-                intent.putExtra("keySemesterNo", String.valueOf(semesterNo));
-                startActivity(intent);
-                finish();
-            }
-        });
-
     }
 
     private int getSelectedResultIndex(Spinner spinnerResults, String subjectResult) {
@@ -138,7 +126,6 @@ public class MarkResultActivity extends AppCompatActivity {
         tvModuleName = findViewById(R.id.tvModuleName);
         tvModuleCredits = findViewById(R.id.tvModuleCredits);
         btnMarkResult = findViewById(R.id.btnMarkResult);
-        btnCancel = findViewById(R.id.btnCancel);
         spinnerResults = findViewById(R.id.spinnerResults);
     }
 
