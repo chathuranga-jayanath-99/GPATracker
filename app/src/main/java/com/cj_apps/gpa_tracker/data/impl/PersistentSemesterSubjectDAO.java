@@ -25,9 +25,9 @@ public class PersistentSemesterSubjectDAO implements SemesterSubjectDAO {
     public static final String RESULT_COLUMN = "result";
 
     public static final String  CREATE_TABLE_QUERY = "create table " + SEMESTER_SUBJECT_TABLE + " ( " +
-            ACCOUNT_ID_COLUMN + " text not null, " +
+            ACCOUNT_ID_COLUMN + " integer not null, " +
             SEMESTER_NO_COLUMN + " integer not null, " +
-            SUBJECT_ID_COLUMN + " int not null, " +
+            SUBJECT_ID_COLUMN + " integer not null, " +
             RESULT_COLUMN + " text);";
 
     private DatabaseHelper databaseHelper;
@@ -94,11 +94,11 @@ public class PersistentSemesterSubjectDAO implements SemesterSubjectDAO {
     }
 
     @Override
-    public boolean removeSemesterSubject(int accountId, int semesterNo, String subjectId) {
+    public boolean removeSemesterSubject(int accountId, int semesterNo, int subjectId) {
         SQLiteDatabase writableDatabase = this.databaseHelper.getWritableDatabase();
 
         int delete = writableDatabase.delete(SEMESTER_SUBJECT_TABLE, "account_id=? and semester_no=? and subject_id=?",
-                new String[]{String.valueOf(accountId), String.valueOf(semesterNo), subjectId});
+                new String[]{String.valueOf(accountId), String.valueOf(semesterNo), String.valueOf(subjectId)});
         if (delete == -1) return false;
         return true;
     }
