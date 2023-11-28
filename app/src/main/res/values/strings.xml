@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GPA-Tracker</string>
+    <string name="app_name">GPA Calculator - For All</string>
     <string name="title_activity_mark_result">ActivityMarkResult</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
