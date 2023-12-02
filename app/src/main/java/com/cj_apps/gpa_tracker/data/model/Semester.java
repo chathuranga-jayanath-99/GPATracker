@@ -7,6 +7,7 @@ public class Semester {
     private int accountId;
     private int semesterNo;
     private String title;
+    private float GPA;
 
     private List<Subject> subjectList;
 
@@ -38,8 +39,16 @@ public class Semester {
         return semesterNo;
     }
 
+    public void setGPA(float GPA) {
+        this.GPA = GPA;
+    }
+
+    public float getGPA() {
+        return GPA;
+    }
+
     @Override
     public String toString() {
-        return "Semester: " + this.semesterNo;
+        return "Semester: " + this.semesterNo + "(" + GPA + ")";
     }
 }
