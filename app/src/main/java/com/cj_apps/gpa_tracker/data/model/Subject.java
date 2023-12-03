@@ -13,7 +13,7 @@ public class Subject {
 
     private String result;
 
-    private static List<String> results = new ArrayList<String>(Arrays.asList("A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D"));
+    private static List<String> results = new ArrayList<String>(Arrays.asList("A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D", "F", "I-we", "I-ca", "N", "W"));
 
     public Subject(int id, String name, float credits) {
         this.id = id;

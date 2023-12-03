@@ -42,7 +42,9 @@ public class Account {
                 String earnResult = subject.getResult();
 
                 float earnPoints = getEarnedPointsFromResult(earnResult);
-
+                if (earnPoints < 0.0f) {
+                    continue;
+                }
                 earnedMarks += earnPoints * subjectCredits;
                 maxMarks += this.maxGpa * subjectCredits;
             }
@@ -64,7 +66,9 @@ public class Account {
             String earnResult = subject.getResult();
 
             float earnPoints = getEarnedPointsFromResult(earnResult);
-
+            if (earnPoints < 0.0f) {
+                continue;
+            }
             earnedMarks +=  earnPoints * subjectCredits;
             maxMarks += this.maxGpa * subjectCredits;
         }
@@ -77,7 +81,7 @@ public class Account {
     }
 
     private float getEarnedPointsFromResult(String result) {
-        if (result == null) return this.maxGpa;
+        if (result == null) return -1.0f;
         if (this.maxGpa == 4.2f && result.equals("A+")) return 4.2f;
 
         switch (result) {
@@ -110,9 +114,16 @@ public class Account {
                 return 1.0f;
 
             case "F":
-            default:
+            case "I-we":
+            case "I-ca":
                 return 0.0f;
 
+            case "N":
+            case "W":
+                return -1.0f;
+
+            default:
+                return -1.0f;
         }
     }
 
